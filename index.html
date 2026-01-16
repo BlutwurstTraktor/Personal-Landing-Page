@@ -1023,9 +1023,9 @@
         .char-tshirt {
             width: 58px;
             height: 40px;
-            top: 66px;
+            top: 62px;
             left: 11px;
-            z-index: 8; /* Between neck and accessories */
+            z-index: 15; /* Above everything - shirt, collar, buttons */
         }
         
         /* T-shirt body - white with round neck */
@@ -1039,84 +1039,24 @@
             background: white;
             border: 2px solid var(--main-color);
             border-radius: 0 0 4px 4px;
-            clip-path: polygon(15% 0%, 85% 0%, 100% 100%, 0% 100%);
+            clip-path: polygon(12% 0%, 88% 0%, 100% 100%, 0% 100%);
         }
         
         /* Round neck cutout */
         .char-tshirt::after {
             content: '';
             position: absolute;
-            width: 18px;
-            height: 10px;
-            top: -2px;
-            left: 20px;
-            background: var(--bg-color);
+            width: 20px;
+            height: 12px;
+            top: -3px;
+            left: 19px;
+            background: var(--bg-page);
             border-radius: 50% 50% 0 0;
         }
         
         /* Yellow Construction Hard Hat (Work Experience) */
         /* Improved Yellow Construction Hard Hat (Work Experience) */
         /* Laptop (Work Experience) - Avatar sits behind it - FLIPPED LEFT */
-        .char-hard-hat {
-            width: 50px;
-            height: 42px;
-            top: 58px;
-            left: 10px;
-            z-index: 10; /* In front of avatar body */
-            transform: scaleX(-1); /* Flip horizontally */
-        }
-        
-        /* Laptop screen */
-        .char-hard-hat::before {
-            content: '';
-            position: absolute;
-            width: 46px;
-            height: 28px;
-            top: 0;
-            left: 2px;
-            background: linear-gradient(to bottom, #2C3E50 0%, #34495E 100%);
-            border: 2.5px solid var(--main-color);
-            border-radius: 2px 2px 0 0;
-            box-shadow: inset 0 2px 8px rgba(0,0,0,0.3);
-        }
-        
-        /* Laptop screen display (blue glow) */
-        .char-hard-hat::after {
-            content: '';
-            position: absolute;
-            width: 40px;
-            height: 22px;
-            top: 3px;
-            left: 5px;
-            background: linear-gradient(135deg, #4A90E2 0%, #357ABD 100%);
-            border-radius: 1px;
-            opacity: 0.9;
-        }
-        
-        /* Laptop keyboard base */
-        .char-hard-hat-light {
-            position: absolute;
-            width: 50px;
-            height: 14px;
-            bottom: 0;
-            left: 0;
-            background: linear-gradient(to bottom, #95A5A6 0%, #7F8C8D 100%);
-            border: 2.5px solid var(--main-color);
-            border-radius: 0 0 2px 2px;
-        }
-        
-        /* Keyboard detail line */
-        .char-hard-hat-light::after {
-            content: '';
-            position: absolute;
-            width: 42px;
-            height: 1.5px;
-            top: 5px;
-            left: 4px;
-            background: var(--main-color);
-            border-radius: 1px;
-            box-shadow: 0 3px 0 0 var(--main-color);
-        }
         
         /* Graduation Cap (Education) */
         .char-grad-cap {
@@ -1189,19 +1129,21 @@
         
         /* Certificate/Diploma - LEFT SIDE (Certificates) */
         /* Award Ribbon - LEFT SIDE (Certificates) - Repositioned Higher */
+        /* Award Ribbon - RIGHT CHEST (Certificates) - Smaller */
         .char-diploma {
-            width: 18px;
-            height: 26px;
-            top: 50px;
-            left: -24px;
+            width: 14px;
+            height: 20px;
+            top: 78px;
+            right: 12px;
+            left: auto;
         }
         
         /* Ribbon circle/medal - smaller */
         .char-diploma::before {
             content: '';
             position: absolute;
-            width: 18px;
-            height: 18px;
+            width: 14px;
+            height: 14px;
             top: 0;
             left: 0;
             background: linear-gradient(135deg, #FFC857 0%, #E99F4C 100%);
@@ -1214,10 +1156,10 @@
         .char-diploma::after {
             content: '';
             position: absolute;
-            width: 6px;
-            height: 14px;
-            top: 16px;
-            left: 2px;
+            width: 5px;
+            height: 11px;
+            top: 12px;
+            left: 1.5px;
             background: #E99F4C;
             border: 2px solid var(--main-color);
             border-top: none;
@@ -1227,10 +1169,10 @@
         /* Right ribbon tail - shorter */
         .char-diploma-ribbon-right {
             position: absolute;
-            width: 6px;
-            height: 14px;
-            top: 16px;
-            left: 10px;
+            width: 5px;
+            height: 11px;
+            top: 12px;
+            left: 7.5px;
             background: #E99F4C;
             border: 2px solid var(--main-color);
             border-top: none;
@@ -1323,24 +1265,26 @@
         
         /* Snowboard Helmet (Hobbies) */
         /* Surfboard (Hobbies) - RIGHT SIDE - Repositioned to be visible */
+        /* Surfboard (Hobbies) - LEFT SIDE - Avatar Size */
         .char-snowboard-helmet {
-            width: 16px;
-            height: 50px;
-            top: 48px;
-            right: -22px;
+            width: 22px;
+            height: 88px;
+            top: 12px;
+            left: -28px;
+            right: auto;
         }
         
         /* Surfboard body - longboard shape */
         .char-snowboard-helmet::before {
             content: '';
             position: absolute;
-            width: 16px;
-            height: 50px;
+            width: 22px;
+            height: 88px;
             top: 0;
             left: 0;
             background: linear-gradient(135deg, #4ECDC4 0%, #44A5A0 50%, #3A8B87 100%);
             border: 2.5px solid var(--main-color);
-            border-radius: 8px 8px 12px 12px;
+            border-radius: 11px 11px 16px 16px;
             clip-path: polygon(
                 50% 0%,
                 100% 5%,
@@ -1355,10 +1299,10 @@
         .char-snowboard-helmet::after {
             content: '';
             position: absolute;
-            width: 10px;
-            height: 3px;
-            top: 20px;
-            left: 3px;
+            width: 14px;
+            height: 4px;
+            top: 30px;
+            left: 4px;
             background: white;
             border-radius: 2px;
             box-shadow: 
@@ -1542,20 +1486,13 @@
             
             /* Accessories mobile scaling */
             /* T-shirt */
-            .char-tshirt { width: 44px; height: 30px; top: 50px; left: 8px; }
-            .char-tshirt::after { width: 14px; height: 8px; left: 15px; }
-            
-            /* Laptop */
-            .char-hard-hat { width: 38px; height: 32px; top: 44px; left: 8px; }
-            .char-hard-hat::before { width: 35px; height: 21px; left: 1.5px; }
-            .char-hard-hat::after { width: 30px; height: 17px; top: 2px; left: 4px; }
-            .char-hard-hat-light { width: 38px; height: 11px; }
-            .char-hard-hat-light::after { width: 32px; top: 4px; left: 3px; }
+            .char-tshirt { width: 44px; height: 30px; top: 47px; left: 8px; }
+            .char-tshirt::after { width: 15px; height: 9px; top: -2px; left: 14.5px; }
             
             /* Graduation Cap */
             .char-grad-cap { width: 34px; height: 6px; top: 4px; left: 13px; }
-            .char-grad-cap::before { width: 20px; height: 20px; left: 7px; }
-            .char-grad-cap::after { width: 2px; height: 6px; left: 16px; }
+            .char-grad-cap::before { width: 24px; height: 9px; top: -9px; left: 3px; }
+            .char-grad-cap::after { width: 2px; height: 11px; top: -2px; right: -6px; }
             
             /* Party Hat */
             .char-party-hat { width: 21px; height: 20px; top: 0px; left: 20px; }
@@ -1567,15 +1504,15 @@
             .char-party-hat-dot3 { width: 3px; height: 3px; top: 11px; left: 12px; }
             
             /* Ribbon */
-            .char-diploma { width: 14px; height: 20px; top: 38px; left: -18px; }
-            .char-diploma::before { width: 14px; height: 14px; }
-            .char-diploma::after { width: 5px; height: 11px; top: 12px; left: 1.5px; }
-            .char-diploma-ribbon-right { width: 5px; height: 11px; top: 12px; left: 7.5px; }
+            .char-diploma { width: 11px; height: 16px; top: 59px; right: 9px; left: auto; }
+            .char-diploma::before { width: 11px; height: 11px; }
+            .char-diploma::after { width: 4px; height: 8px; top: 10px; left: 1px; }
+            .char-diploma-ribbon-right { width: 4px; height: 8px; top: 10px; left: 6px; }
             
             /* Surfboard */
-            .char-snowboard-helmet { width: 12px; height: 38px; top: 36px; right: -17px; }
-            .char-snowboard-helmet::before { width: 12px; height: 38px; }
-            .char-snowboard-helmet::after { width: 8px; height: 2px; top: 15px; left: 2px; box-shadow: 0 5px 0 white, 0 10px 0 white; }
+            .char-snowboard-helmet { width: 17px; height: 66px; top: 9px; left: -21px; right: auto; }
+            .char-snowboard-helmet::before { width: 17px; height: 66px; }
+            .char-snowboard-helmet::after { width: 11px; height: 3px; top: 23px; left: 3px; box-shadow: 0 5px 0 white, 0 10px 0 white; }
             
             /* Deer/Bambi */
             .char-bambi { width: 26px; height: 32px; top: 38px; left: -30px; }
@@ -2187,8 +2124,8 @@
             <div class="container">
                 
                 <!-- Objectives -->
+                <h3 style="color: var(--main-color); margin-bottom: 1.5rem; font-size: 1.5rem;">Objectives</h3>
                 <div class="card" style="margin-bottom: 2rem;">
-                    <h3 style="color: var(--main-focus); margin-bottom: 1rem;">Objectives</h3>
                     <p>I aim to leverage my technical and transformation expertise to accelerate environmental solutions with measurable ecological impact. I seek to bridge complex environmental challenges with scalable technological implementations, enabling organizations to achieve ambitious sustainability goals. Through my combination of financial services transformation experience and emerging environmental knowledge, I can help organizations navigate sustainable business models, green finance innovations, and net-zero strategies.</p>
                 </div>
                 
@@ -2294,9 +2231,6 @@
             <div class="char-button char-button3"></div>
             
             <!-- Accessories (shown/hidden based on section) -->
-            <div class="char-accessory char-hard-hat" data-section="experience">
-                <div class="char-hard-hat-light"></div>
-            </div>
             <div class="char-accessory char-grad-cap" data-section="education"></div>
             <div class="char-accessory char-speech" data-section="languages"></div>
             <div class="char-accessory char-diploma" data-section="certificates">
