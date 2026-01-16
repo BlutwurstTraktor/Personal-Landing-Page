@@ -1019,15 +1019,51 @@
             opacity: 1;
         }
         
+        /* White T-Shirt (Hobbies & Volunteering) */
+        .char-tshirt {
+            width: 58px;
+            height: 40px;
+            top: 66px;
+            left: 11px;
+            z-index: 8; /* Between neck and accessories */
+        }
+        
+        /* T-shirt body - white with round neck */
+        .char-tshirt::before {
+            content: '';
+            position: absolute;
+            width: 58px;
+            height: 40px;
+            top: 0;
+            left: 0;
+            background: white;
+            border: 2px solid var(--main-color);
+            border-radius: 0 0 4px 4px;
+            clip-path: polygon(15% 0%, 85% 0%, 100% 100%, 0% 100%);
+        }
+        
+        /* Round neck cutout */
+        .char-tshirt::after {
+            content: '';
+            position: absolute;
+            width: 18px;
+            height: 10px;
+            top: -2px;
+            left: 20px;
+            background: var(--bg-color);
+            border-radius: 50% 50% 0 0;
+        }
+        
         /* Yellow Construction Hard Hat (Work Experience) */
         /* Improved Yellow Construction Hard Hat (Work Experience) */
-        /* Laptop (Work Experience) - Avatar sits behind it */
+        /* Laptop (Work Experience) - Avatar sits behind it - FLIPPED LEFT */
         .char-hard-hat {
             width: 50px;
             height: 42px;
-            top: 62px;
-            left: 15px;
+            top: 58px;
+            left: 10px;
             z-index: 10; /* In front of avatar body */
+            transform: scaleX(-1); /* Flip horizontally */
         }
         
         /* Laptop screen */
@@ -1152,12 +1188,12 @@
         }
         
         /* Certificate/Diploma - LEFT SIDE (Certificates) */
-        /* Award Ribbon - LEFT SIDE (Certificates) - More Compact */
+        /* Award Ribbon - LEFT SIDE (Certificates) - Repositioned Higher */
         .char-diploma {
             width: 18px;
             height: 26px;
-            top: 76px;
-            left: -26px;
+            top: 50px;
+            left: -24px;
         }
         
         /* Ribbon circle/medal - smaller */
@@ -1286,12 +1322,12 @@
         }
         
         /* Snowboard Helmet (Hobbies) */
-        /* Surfboard (Hobbies) - RIGHT SIDE */
+        /* Surfboard (Hobbies) - RIGHT SIDE - Repositioned to be visible */
         .char-snowboard-helmet {
             width: 16px;
             height: 50px;
-            top: 60px;
-            right: -24px;
+            top: 48px;
+            right: -22px;
         }
         
         /* Surfboard body - longboard shape */
@@ -1332,79 +1368,133 @@
         
         /* Bambi (Volunteering) - LEFT SIDE - Facing Right */
         .char-bambi {
-            width: 25px;
-            height: 30px;
-            top: 72px;
-            left: -30px;
-            transform: scaleX(-1); /* Flip horizontally to face right */
+            width: 35px;
+            height: 42px;
+            top: 50px;
+            left: -40px;
+            transform: scaleX(-1); /* Flip to face right */
         }
         
+        /* Deer body */
         .char-bambi::before {
             content: '';
             position: absolute;
-            width: 12px;
-            height: 12px;
-            top: 0;
-            left: 6px;
+            width: 20px;
+            height: 20px;
+            top: 8px;
+            left: 7px;
             background: #D4A574;
             border: 2px solid var(--main-color);
-            border-radius: 6px;
+            border-radius: 10px 10px 8px 8px;
         }
         
+        /* Deer head */
         .char-bambi::after {
             content: '';
             position: absolute;
             width: 14px;
-            height: 16px;
-            top: 10px;
-            left: 5px;
+            height: 14px;
+            top: 0;
+            left: 18px;
             background: #D4A574;
             border: 2px solid var(--main-color);
-            border-radius: 7px 7px 5px 5px;
+            border-radius: 7px;
         }
         
-        /* Bambi ears */
+        /* Deer ears - bigger */
         .char-bambi-ear-left,
         .char-bambi-ear-right {
             position: absolute;
-            width: 5px;
-            height: 8px;
+            width: 6px;
+            height: 10px;
             background: #D4A574;
             border: 2px solid var(--main-color);
             border-radius: 3px 3px 0 0;
         }
         
         .char-bambi-ear-left {
-            top: -3px;
-            left: 4px;
-            transform: rotate(-20deg);
+            top: -6px;
+            left: 16px;
+            transform: rotate(-25deg);
         }
         
         .char-bambi-ear-right {
-            top: -3px;
-            right: 4px;
-            transform: rotate(20deg);
+            top: -6px;
+            right: 2px;
+            transform: rotate(25deg);
         }
         
-        /* Bambi spots */
-        .char-bambi-spot1,
+        /* Deer eyes - bigger (reusing spot1 and spot2) */
+        .char-bambi-spot1 {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: var(--main-color);
+            border-radius: 50%;
+            top: 5px;
+            left: 20px;
+        }
+        
         .char-bambi-spot2 {
             position: absolute;
             width: 3px;
             height: 3px;
+            background: var(--main-color);
+            border-radius: 50%;
+            top: 5px;
+            left: 26px;
+        }
+        
+        /* White spots on body */
+        .char-bambi-spot3 {
+            position: absolute;
+            width: 4px;
+            height: 4px;
             background: white;
             border-radius: 50%;
+            top: 12px;
+            left: 10px;
         }
         
-        .char-bambi-spot1 {
-            top: 14px;
-            left: 8px;
+        .char-bambi-spot4 {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: white;
+            border-radius: 50%;
+            top: 16px;
+            left: 15px;
         }
         
-        .char-bambi-spot2 {
-            top: 17px;
+        .char-bambi-spot5 {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: white;
+            border-radius: 50%;
+            top: 20px;
             left: 12px;
         }
+        
+        /* Four legs */
+        .char-bambi-leg1,
+        .char-bambi-leg2,
+        .char-bambi-leg3,
+        .char-bambi-leg4 {
+            position: absolute;
+            width: 4px;
+            height: 14px;
+            bottom: 0;
+            background: #D4A574;
+            border: 2px solid var(--main-color);
+            border-radius: 2px 2px 1px 1px;
+        }
+        
+        .char-bambi-leg1 { left: 10px; } /* Front left */
+        .char-bambi-leg2 { left: 16px; } /* Front right */
+        .char-bambi-leg3 { left: 20px; } /* Back left */
+        .char-bambi-leg4 { left: 24px; } /* Back right */
+        
         
         /* Green T-Shirt (Volunteering - deprecated, using bambi instead) */
         .char-green-shirt {
@@ -1449,6 +1539,60 @@
             .char-button1 { top: 64px; }
             .char-button2 { top: 70px; }
             .char-button3 { top: 76px; }
+            
+            /* Accessories mobile scaling */
+            /* T-shirt */
+            .char-tshirt { width: 44px; height: 30px; top: 50px; left: 8px; }
+            .char-tshirt::after { width: 14px; height: 8px; left: 15px; }
+            
+            /* Laptop */
+            .char-hard-hat { width: 38px; height: 32px; top: 44px; left: 8px; }
+            .char-hard-hat::before { width: 35px; height: 21px; left: 1.5px; }
+            .char-hard-hat::after { width: 30px; height: 17px; top: 2px; left: 4px; }
+            .char-hard-hat-light { width: 38px; height: 11px; }
+            .char-hard-hat-light::after { width: 32px; top: 4px; left: 3px; }
+            
+            /* Graduation Cap */
+            .char-grad-cap { width: 34px; height: 6px; top: 4px; left: 13px; }
+            .char-grad-cap::before { width: 20px; height: 20px; left: 7px; }
+            .char-grad-cap::after { width: 2px; height: 6px; left: 16px; }
+            
+            /* Party Hat */
+            .char-party-hat { width: 21px; height: 20px; top: 0px; left: 20px; }
+            .char-party-hat::before { border-left: 10.5px solid transparent; border-right: 10.5px solid transparent; border-bottom: 18px solid #FF6B9D; }
+            .char-party-hat-border { border-left: 12px solid transparent; border-right: 12px solid transparent; border-bottom: 20px solid var(--main-color); }
+            .char-party-hat::after { width: 23px; height: 5px; left: -1px; }
+            .char-party-hat-dot1 { width: 3px; height: 3px; top: 6px; left: 9px; }
+            .char-party-hat-dot2 { width: 3px; height: 3px; top: 11px; left: 6px; }
+            .char-party-hat-dot3 { width: 3px; height: 3px; top: 11px; left: 12px; }
+            
+            /* Ribbon */
+            .char-diploma { width: 14px; height: 20px; top: 38px; left: -18px; }
+            .char-diploma::before { width: 14px; height: 14px; }
+            .char-diploma::after { width: 5px; height: 11px; top: 12px; left: 1.5px; }
+            .char-diploma-ribbon-right { width: 5px; height: 11px; top: 12px; left: 7.5px; }
+            
+            /* Surfboard */
+            .char-snowboard-helmet { width: 12px; height: 38px; top: 36px; right: -17px; }
+            .char-snowboard-helmet::before { width: 12px; height: 38px; }
+            .char-snowboard-helmet::after { width: 8px; height: 2px; top: 15px; left: 2px; box-shadow: 0 5px 0 white, 0 10px 0 white; }
+            
+            /* Deer/Bambi */
+            .char-bambi { width: 26px; height: 32px; top: 38px; left: -30px; }
+            .char-bambi::before { width: 15px; height: 15px; top: 6px; left: 5px; }
+            .char-bambi::after { width: 11px; height: 11px; top: 0; left: 13px; }
+            .char-bambi-ear-left { width: 5px; height: 8px; top: -5px; left: 12px; }
+            .char-bambi-ear-right { width: 5px; height: 8px; top: -5px; right: 1.5px; }
+            .char-bambi-spot1 { width: 2px; height: 2px; top: 4px; left: 15px; }
+            .char-bambi-spot2 { width: 2px; height: 2px; top: 4px; left: 19px; }
+            .char-bambi-spot3 { width: 3px; height: 3px; top: 9px; left: 7px; }
+            .char-bambi-spot4 { width: 3px; height: 3px; top: 12px; left: 11px; }
+            .char-bambi-spot5 { width: 3px; height: 3px; top: 15px; left: 9px; }
+            .char-bambi-leg1, .char-bambi-leg2, .char-bambi-leg3, .char-bambi-leg4 { width: 3px; height: 11px; }
+            .char-bambi-leg1 { left: 7px; }
+            .char-bambi-leg2 { left: 12px; }
+            .char-bambi-leg3 { left: 15px; }
+            .char-bambi-leg4 { left: 18px; }
         }
         
         /* Responsive */
@@ -1463,27 +1607,30 @@
                 gap: 0.75rem;
             }
             
+            /* First row: Logo+Name and Language Switcher */
             .header-left {
-                width: 100%;
-                justify-content: space-between;
+                width: auto;
+                flex: 1;
+                justify-content: flex-start;
                 order: 1;
             }
             
             .header-right {
+                width: auto;
                 order: 2;
             }
             
-            /* Logo link takes natural width on first row */
-            .logo-link {
-                flex-shrink: 0;
-            }
-            
-            /* Main navigation on second row - matches logo-link width exactly */
+            /* Second row: Main navigation takes full width */
             .main-nav {
                 width: 100%;
                 order: 3;
                 justify-content: flex-start;
                 padding-left: 0;
+            }
+            
+            /* Logo link takes natural width */
+            .logo-link {
+                flex-shrink: 0;
             }
             
             /* Logo smaller on mobile */
@@ -1500,7 +1647,7 @@
                 transform: scale(0.7);
             }
             
-            /* Language switcher stays on first row, right side */
+            /* Language switcher compact */
             .lang-switcher {
                 gap: 0.5rem;
             }
@@ -2162,12 +2309,21 @@
                 <div class="char-party-hat-dot3"></div>
             </div>
             <div class="char-accessory char-snowboard-helmet" data-section="hobbies"></div>
+            <div class="char-accessory char-tshirt" data-section="hobbies"></div>
             <div class="char-accessory char-bambi" data-section="volunteering">
                 <div class="char-bambi-ear-left"></div>
                 <div class="char-bambi-ear-right"></div>
                 <div class="char-bambi-spot1"></div>
                 <div class="char-bambi-spot2"></div>
+                <div class="char-bambi-spot3"></div>
+                <div class="char-bambi-spot4"></div>
+                <div class="char-bambi-spot5"></div>
+                <div class="char-bambi-leg1"></div>
+                <div class="char-bambi-leg2"></div>
+                <div class="char-bambi-leg3"></div>
+                <div class="char-bambi-leg4"></div>
             </div>
+            <div class="char-accessory char-tshirt" data-section="volunteering"></div>
         </div>
     </div>
 
