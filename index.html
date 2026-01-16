@@ -123,8 +123,9 @@
             background-color: var(--bg-color);
             border-bottom: 2px solid var(--main-color);
             box-shadow: 0 4px 0 0 var(--main-color);
-            z-index: 100;
+            z-index: 1000; /* CRITICAL - Above everything */
             padding: 1.25rem 0;
+            width: 100%;
         }
         
         /* Scroll Progress Bar */
@@ -135,7 +136,7 @@
             width: 100%;
             height: 4px;
             background-color: var(--bg-page);
-            z-index: 101;
+            z-index: 1001; /* Above header */
         }
         
         .scroll-progress-bar {
@@ -1556,22 +1557,26 @@
                 padding: 0 1.5rem;
             }
             
-            /* Mobile Header: Flexbox with Line Breaks */
+            /* Header padding for mobile */
+            header {
+                padding: 1rem 0;
+            }
+            
+            /* Mobile Header: Clean 2-Row Layout */
             .header-content {
                 display: flex;
                 flex-wrap: wrap;
                 align-items: center;
-                gap: 0;
+                gap: 0.5rem 0.75rem; /* vertical, horizontal gap */
                 width: 100%;
             }
             
-            /* Row 1 Left: Logo + Name */
+            /* Row 1 Left: Logo + Name (MS) */
             .header-left {
                 display: flex;
                 align-items: center;
-                gap: 0.75rem;
-                flex: 1 1 auto;
-                min-width: 0;
+                gap: 0.5rem;
+                flex: 0 0 auto;
                 order: 1;
             }
             
@@ -1585,13 +1590,14 @@
                 margin-left: auto;
             }
             
-            /* Force line break after row 1 using a wrapper trick */
+            /* Row 2: Full Width Navigation */
             .main-nav {
                 display: flex;
-                gap: 0.75rem;
-                flex-basis: 100%;
+                gap: 0.5rem;
+                align-items: center;
+                flex: 0 0 100%;
                 order: 3;
-                margin-top: 0.75rem;
+                justify-content: flex-start;
             }
             
             /* Logo link */
