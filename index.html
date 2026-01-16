@@ -124,16 +124,213 @@
             padding: 1.25rem 0;
         }
         
+        /* Scroll Progress Bar */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background-color: var(--bg-page);
+            z-index: 101;
+        }
+        
+        .scroll-progress-bar {
+            height: 100%;
+            background-color: var(--main-focus);
+            width: 0%;
+            transition: width 0.1s ease;
+            box-shadow: 2px 0 4px rgba(45, 140, 240, 0.3);
+        }
+        
         .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
         
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        
+        /* Profile Picture in Header as Home Button */
+        
+        .header-pic-container {
+            position: relative;
+            width: 38px;
+            height: 48px;
+            transform: scale(0.75);
+        }
+        
         .logo {
             font-weight: 700;
             font-size: 1.3rem;
             color: var(--main-color);
+        }
+        
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        
+        /* Logo Link with Profile Pic */
+        .logo-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .logo-link:hover {
+            transform: translateY(-1px);
+        }
+        
+        .logo-link:active {
+            transform: translateY(1px);
+        }
+        
+        /* Mini Profile Picture in Header */
+        .header-profile-pic {
+            position: relative;
+            width: 40px;
+            height: 50px;
+            background: transparent;
+            transition: var(--transition);
+        }
+        
+        .logo-link:hover .header-profile-pic {
+            transform: scale(1.05);
+        }
+        
+        /* Mini Profile Pic Elements (Scaled down version) */
+        .hp-hair {
+            position: absolute;
+            width: 25px;
+            height: 15px;
+            top: 4px;
+            left: 7.5px;
+            background: #3d2817;
+            border-radius: 12.5px 12.5px 0 0;
+            border: 1.5px solid var(--main-color);
+            border-bottom: none;
+        }
+        
+        .hp-head {
+            position: absolute;
+            width: 25px;
+            height: 30px;
+            top: 6px;
+            left: 7.5px;
+            background: linear-gradient(to bottom, #f5d5b8 0%, #e8c4a8 100%);
+            border-radius: 12.5px 12.5px 10px 10px;
+            border: 1.5px solid var(--main-color);
+        }
+        
+        .hp-glasses {
+            position: absolute;
+            width: 21px;
+            height: 7px;
+            top: 16px;
+            left: 9.5px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .hp-glasses::before,
+        .hp-glasses::after {
+            content: '';
+            width: 8px;
+            height: 7px;
+            border: 1.5px solid #8b6f47;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .hp-glasses-bridge {
+            position: absolute;
+            width: 3px;
+            height: 1.5px;
+            background: #8b6f47;
+            top: 3px;
+            left: 9px;
+        }
+        
+        .hp-smile {
+            position: absolute;
+            width: 10px;
+            height: 5px;
+            top: 25px;
+            left: 15px;
+            border: 1.5px solid var(--main-color);
+            border-top: none;
+            border-radius: 0 0 5px 5px;
+        }
+        
+        .hp-beard {
+            position: absolute;
+            width: 14px;
+            height: 6px;
+            top: 27.5px;
+            left: 13px;
+            background: #5d4a37;
+            border-radius: 0 0 7px 7px;
+            opacity: 0.4;
+        }
+        
+        /* Main Navigation (CV / Competence Profile) */
+        .main-nav {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+        
+        .nav-separator {
+            color: var(--main-color);
+            font-weight: 300;
+            font-size: 1.2rem;
+            margin: 0 0.25rem;
+        }
+        
+        .nav-btn {
+            height: 38px;
+            padding: 0 1.25rem;
+            border: 2px solid var(--main-color);
+            background: var(--bg-color);
+            color: var(--main-color);
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: var(--transition);
+            font-family: inherit;
+        }
+        
+        .nav-btn:hover {
+            background: var(--bg-page);
+        }
+        
+        .nav-btn.active {
+            background: var(--main-color);
+            color: var(--bg-color);
+            box-shadow: 2px 2px var(--main-color);
+        }
+        
+        .nav-btn:active {
+            transform: translateY(2px);
+        }
+        
+        /* View Content Switching */
+        .view-content {
+            display: none;
+        }
+        
+        .view-content.active {
+            display: block;
         }
         
         .lang-switcher {
@@ -213,7 +410,7 @@
         /* Profile Picture Container */
         .profile-section {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 1rem;
             margin-top: 2rem;
         }
@@ -229,150 +426,6 @@
             justify-content: center;
             align-items: center;
             height: 100%;
-        }
-        
-        .profile-picture-card {
-            background: var(--bg-color);
-            border: 2px solid var(--main-color);
-            box-shadow: 4px 4px var(--main-color);
-            border-radius: 5px;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-            transition: var(--transition);
-        }
-        
-        .profile-picture-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 6px 6px var(--main-color);
-        }
-        
-        /* Abstract Profile Illustration */
-        .profile-img {
-            position: relative;
-            width: 100px;
-            height: 125px;
-            transform: scale(0.9);
-        }
-        
-        /* Head */
-        .profile-img .head {
-            position: absolute;
-            width: 70px;
-            height: 85px;
-            top: 15px;
-            left: 25px;
-            background: linear-gradient(to bottom, #f5d5b8 0%, #e8c4a8 100%);
-            border-radius: 35px 35px 30px 30px;
-            border: 2px solid var(--main-color);
-        }
-        
-        /* Hair */
-        .profile-img .hair {
-            position: absolute;
-            width: 70px;
-            height: 45px;
-            top: 10px;
-            left: 25px;
-            background: #3d2817;
-            border-radius: 35px 35px 0 0;
-            border: 2px solid var(--main-color);
-            border-bottom: none;
-        }
-        
-        /* Glasses Frame */
-        .profile-img .glasses {
-            position: absolute;
-            width: 60px;
-            height: 20px;
-            top: 45px;
-            left: 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .profile-img .glasses::before,
-        .profile-img .glasses::after {
-            content: '';
-            width: 24px;
-            height: 20px;
-            border: 2px solid #8b6f47;
-            border-radius: 12px;
-            background: rgba(255, 255, 255, 0.1);
-        }
-        
-        .profile-img .glasses-bridge {
-            position: absolute;
-            width: 8px;
-            height: 2px;
-            background: #8b6f47;
-            top: 9px;
-            left: 26px;
-        }
-        
-        /* Smile */
-        .profile-img .smile {
-            position: absolute;
-            width: 30px;
-            height: 15px;
-            top: 70px;
-            left: 45px;
-            border: 2px solid var(--main-color);
-            border-top: none;
-            border-radius: 0 0 15px 15px;
-        }
-        
-        /* Body - Suit Jacket */
-        .profile-img .body {
-            position: absolute;
-            width: 90px;
-            height: 60px;
-            top: 95px;
-            left: 15px;
-            background: #001f3f;
-            border: 2px solid var(--main-color);
-            border-radius: 0 0 5px 5px;
-            clip-path: polygon(25% 0%, 75% 0%, 100% 100%, 0% 100%);
-        }
-        
-        /* Shirt - White Collar */
-        .profile-img .shirt {
-            position: absolute;
-            width: 50px;
-            height: 30px;
-            top: 98px;
-            left: 35px;
-            background: white;
-            border: 2px solid var(--main-color);
-            clip-path: polygon(30% 0%, 70% 0%, 100% 100%, 0% 100%);
-            z-index: 1;
-        }
-        
-        /* Pocket Square */
-        .profile-img .pocket-square {
-            position: absolute;
-            width: 10px;
-            height: 8px;
-            top: 105px;
-            left: 28px;
-            background: #4a90e2;
-            border: 1px solid var(--main-color);
-            border-bottom: none;
-        }
-        
-        /* Beard */
-        .profile-img .beard {
-            position: absolute;
-            width: 40px;
-            height: 18px;
-            top: 78px;
-            left: 40px;
-            background: #5d4a37;
-            border-radius: 0 0 20px 20px;
-            opacity: 0.4;
         }
         
         .info-badge-label {
@@ -443,6 +496,43 @@
         
         /* Card Container */
         .card-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        /* Dropdown for Early Career */
+        .dropdown-toggle {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+        }
+        
+        .dropdown-icon {
+            font-size: 1.5rem;
+            font-weight: 700;
+            transition: transform 0.3s ease;
+            color: var(--main-focus);
+        }
+        
+        .dropdown-toggle.active .dropdown-icon {
+            transform: rotate(180deg);
+        }
+        
+        .dropdown-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+        }
+        
+        .dropdown-content.active {
+            max-height: 2000px;
+        }
+        
+        .dropdown-items {
+            padding-top: 1.5rem;
             display: flex;
             flex-direction: column;
             gap: 1.5rem;
@@ -563,13 +653,89 @@
             font-weight: 600;
         }
         
-        /* Certificates */
-        .cert-list {
-            list-style: none;
+        /* Language Progress Bars */
+        .language-item {
+            margin-bottom: 1.5rem;
         }
         
-        .cert-item {
-            margin-bottom: 1.5rem;
+        .language-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        
+        .language-name {
+            font-weight: 600;
+            color: var(--main-color);
+            font-size: 1rem;
+        }
+        
+        .language-level {
+            font-size: 0.85rem;
+            color: var(--font-color-sub);
+            font-weight: 500;
+        }
+        
+        .progress-bar-container {
+            width: 100%;
+            height: 12px;
+            background-color: var(--bg-page);
+            border: 2px solid var(--main-color);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background-color: var(--main-focus);
+            transition: width 1s ease;
+            position: relative;
+        }
+        
+        .progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.3),
+                transparent
+            );
+            animation: shimmer 2s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        /* Certificates */
+        /* Certificates Grid */
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+        
+        @media (max-width: 900px) {
+            .cert-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .cert-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .cert-card {
+            padding: 1.5rem;
         }
         
         .cert-year {
@@ -577,19 +743,19 @@
             color: var(--main-focus);
             font-weight: 600;
             text-transform: uppercase;
+            margin-bottom: 0.5rem;
         }
         
         .cert-name {
             color: var(--main-color);
             font-weight: 600;
-            margin-top: 0.5rem;
             font-size: 1.05rem;
+            margin-bottom: 0.5rem;
         }
         
         .cert-org {
             color: var(--font-color-sub);
             font-size: 0.9rem;
-            margin-top: 0.35rem;
         }
         
         /* Hobbies Grid */
@@ -634,10 +800,525 @@
             display: none !important;
         }
         
+        /* Animated Scrolling Character */
+        /* Animated Scrolling Character */
+        .scroll-character {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 80px;
+            height: 100px;
+            z-index: 50;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            pointer-events: none;
+            display: block; /* Shown by default (CV view active), hidden via JS on Competence view */
+        }
+        
+        .scroll-character:hover {
+            transform: scale(1.1);
+        }
+        
+        .character-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        
+        /* Character Base */
+        .char-hair {
+            position: absolute;
+            width: 50px;
+            height: 30px;
+            top: 8px;
+            left: 15px;
+            background: #3d2817;
+            border-radius: 25px 25px 0 0;
+            border: 2px solid var(--main-color);
+            border-bottom: none;
+        }
+        
+        .char-head {
+            position: absolute;
+            width: 50px;
+            height: 60px;
+            top: 12px;
+            left: 15px;
+            background: linear-gradient(to bottom, #f5d5b8 0%, #e8c4a8 100%);
+            border-radius: 25px 25px 20px 20px;
+            border: 2px solid var(--main-color);
+        }
+        
+        .char-glasses {
+            position: absolute;
+            width: 42px;
+            height: 14px;
+            top: 32px;
+            left: 19px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .char-glasses::before,
+        .char-glasses::after {
+            content: '';
+            width: 16px;
+            height: 14px;
+            border: 2px solid #8b6f47;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .char-glasses-bridge {
+            position: absolute;
+            width: 6px;
+            height: 2px;
+            background: #8b6f47;
+            top: 6px;
+            left: 18px;
+        }
+        
+        .char-smile {
+            position: absolute;
+            width: 20px;
+            height: 10px;
+            top: 50px;
+            left: 30px;
+            border: 2px solid var(--main-color);
+            border-top: none;
+            border-radius: 0 0 10px 10px;
+        }
+        
+        .char-beard {
+            position: absolute;
+            width: 46px;
+            height: 12px;
+            top: 55px;
+            left: 17px;
+            background: #5d4a37;
+            border-radius: 0 0 23px 23px;
+            opacity: 0.4;
+            z-index: 3;
+        }
+        
+        /* Neck */
+        .char-neck {
+            position: absolute;
+            width: 24px;
+            height: 16px;
+            top: 66px;
+            left: 28px;
+            background: linear-gradient(to bottom, #e8c4a8 0%, #dab599 100%);
+            z-index: 2;
+        }
+        
+        /* Shoulders */
+        .char-left-shoulder {
+            position: absolute;
+            width: 20px;
+            height: 32px;
+            top: 78px;
+            left: 8px;
+            background: #8FC4E8;
+            border-top: 2px solid var(--main-color);
+            border-bottom: 2px solid var(--main-color);
+            border-left: 2px solid var(--main-color);
+            border-radius: 4px 0 0 4px;
+        }
+        
+        .char-right-shoulder {
+            position: absolute;
+            width: 20px;
+            height: 32px;
+            top: 78px;
+            right: 8px;
+            background: #8FC4E8;
+            border-top: 2px solid var(--main-color);
+            border-bottom: 2px solid var(--main-color);
+            border-right: 2px solid var(--main-color);
+            border-radius: 0 4px 4px 0;
+        }
+        
+        /* Shirt Body */
+        .char-shirt-body {
+            position: absolute;
+            width: 38px;
+            height: 32px;
+            top: 78px;
+            left: 21px;
+            background: #A8D5F0;
+            border-top: 2px solid var(--main-color);
+            border-bottom: 2px solid var(--main-color);
+        }
+        
+        /* Collar */
+        .char-collar-left {
+            position: absolute;
+            width: 10px;
+            height: 16px;
+            top: 76px;
+            left: 26px;
+            background: #A8D5F0;
+            border: 2px solid var(--main-color);
+            border-bottom: none;
+            border-right: none;
+            transform: rotate(-20deg);
+            transform-origin: bottom right;
+            z-index: 3;
+        }
+        
+        .char-collar-right {
+            position: absolute;
+            width: 10px;
+            height: 16px;
+            top: 76px;
+            right: 26px;
+            background: #A8D5F0;
+            border: 2px solid var(--main-color);
+            border-bottom: none;
+            border-left: none;
+            transform: rotate(20deg);
+            transform-origin: bottom left;
+            z-index: 3;
+        }
+        
+        /* Placket & Buttons */
+        .char-placket {
+            position: absolute;
+            width: 2px;
+            height: 24px;
+            top: 83px;
+            left: 39px;
+            background: var(--main-color);
+        }
+        
+        .char-button {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            left: 37.5px;
+            background: white;
+            border: 1px solid var(--main-color);
+            border-radius: 50%;
+        }
+        
+        .char-button1 { top: 86px; }
+        .char-button2 { top: 94px; }
+        .char-button3 { top: 102px; }
+        
+        /* Accessories (hidden by default) */
+        .char-accessory {
+            position: absolute;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .char-accessory.active {
+            opacity: 1;
+        }
+        
+        /* Yellow Construction Hard Hat (Work Experience) */
+        .char-hard-hat {
+            width: 50px;
+            height: 20px;
+            top: 5px;
+            left: 15px;
+            background: linear-gradient(to bottom, #FFD700 0%, #FFA500 100%);
+            border: 2px solid var(--main-color);
+            border-radius: 25px 25px 5px 5px;
+        }
+        
+        .char-hard-hat::before {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 8px;
+            top: -6px;
+            left: 10px;
+            background: #FFD700;
+            border: 2px solid var(--main-color);
+            border-radius: 15px 15px 0 0;
+        }
+        
+        .char-hard-hat::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 3px;
+            top: 18px;
+            left: 15px;
+            background: var(--main-color);
+        }
+        
+        /* Graduation Cap (Education) */
+        .char-grad-cap {
+            width: 45px;
+            height: 8px;
+            top: 5px;
+            left: 17.5px;
+            background: var(--main-color);
+            border: 2px solid var(--main-color);
+        }
+        
+        .char-grad-cap::before {
+            content: '';
+            position: absolute;
+            width: 32px;
+            height: 12px;
+            top: -12px;
+            left: 4px;
+            background: var(--main-color);
+            border: 2px solid var(--main-color);
+            border-radius: 3px 3px 0 0;
+        }
+        
+        .char-grad-cap::after {
+            content: '';
+            position: absolute;
+            width: 2px;
+            height: 15px;
+            top: -3px;
+            right: -8px;
+            background: #E99F4C;
+            border-radius: 50%;
+        }
+        
+        /* Speech Bubble - LEFT SIDE (Languages) */
+        .char-speech {
+            width: 35px;
+            height: 25px;
+            top: 15px;
+            left: -40px;
+            background: white;
+            border: 2px solid var(--main-color);
+            border-radius: 8px;
+        }
+        
+        .char-speech::before {
+            content: 'Hi!';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--main-color);
+        }
+        
+        .char-speech::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 8px solid white;
+            border-right: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+            border-top: 8px solid white;
+            top: 12px;
+            right: -8px;
+            filter: drop-shadow(2px 0 0 var(--main-color));
+        }
+        
+        /* Certificate/Diploma - LEFT SIDE (Certificates) */
+        /* Award Ribbon - LEFT SIDE (Certificates) */
+        .char-diploma {
+            width: 24px;
+            height: 32px;
+            top: 72px;
+            left: -32px;
+        }
+        
+        /* Ribbon circle/medal */
+        .char-diploma::before {
+            content: '';
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            top: 0;
+            left: 0;
+            background: linear-gradient(135deg, #FFC857 0%, #E99F4C 100%);
+            border: 2.5px solid var(--main-color);
+            border-radius: 50%;
+            box-shadow: inset 0 0 0 3px #FFD700;
+        }
+        
+        /* Left ribbon tail */
+        .char-diploma::after {
+            content: '';
+            position: absolute;
+            width: 7px;
+            height: 18px;
+            top: 20px;
+            left: 3px;
+            background: #E99F4C;
+            border: 2px solid var(--main-color);
+            border-top: none;
+            clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
+        }
+        
+        /* Right ribbon tail */
+        .char-diploma-ribbon-right {
+            position: absolute;
+            width: 7px;
+            height: 18px;
+            top: 20px;
+            left: 14px;
+            background: #E99F4C;
+            border: 2px solid var(--main-color);
+            border-top: none;
+            clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
+        }
+        
+        /* Snowboard Helmet (Hobbies) */
+        .char-snowboard-helmet {
+            width: 48px;
+            height: 22px;
+            top: 6px;
+            left: 16px;
+            background: linear-gradient(to bottom, #FF6B6B 0%, #C92A2A 100%);
+            border: 2px solid var(--main-color);
+            border-radius: 24px 24px 8px 8px;
+        }
+        
+        .char-snowboard-helmet::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 8px;
+            top: 8px;
+            left: 14px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 10px 10px 0 0;
+        }
+        
+        .char-snowboard-helmet::after {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 6px;
+            top: 18px;
+            left: 4px;
+            background: #C92A2A;
+            border: 2px solid var(--main-color);
+            border-top: none;
+            border-radius: 0 0 6px 6px;
+        }
+        
+        /* Bambi (Volunteering) - LEFT SIDE */
+        .char-bambi {
+            width: 25px;
+            height: 30px;
+            top: 72px;
+            left: -30px;
+        }
+        
+        .char-bambi::before {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            top: 0;
+            left: 6px;
+            background: #D4A574;
+            border: 2px solid var(--main-color);
+            border-radius: 6px;
+        }
+        
+        .char-bambi::after {
+            content: '';
+            position: absolute;
+            width: 14px;
+            height: 16px;
+            top: 10px;
+            left: 5px;
+            background: #D4A574;
+            border: 2px solid var(--main-color);
+            border-radius: 7px 7px 5px 5px;
+        }
+        
+        /* Bambi ears */
+        .char-bambi-ear-left,
+        .char-bambi-ear-right {
+            position: absolute;
+            width: 5px;
+            height: 8px;
+            background: #D4A574;
+            border: 2px solid var(--main-color);
+            border-radius: 3px 3px 0 0;
+        }
+        
+        .char-bambi-ear-left {
+            top: -3px;
+            left: 4px;
+            transform: rotate(-20deg);
+        }
+        
+        .char-bambi-ear-right {
+            top: -3px;
+            right: 4px;
+            transform: rotate(20deg);
+        }
+        
+        /* Bambi spots */
+        .char-bambi-spot1,
+        .char-bambi-spot2 {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: white;
+            border-radius: 50%;
+        }
+        
+        .char-bambi-spot1 {
+            top: 14px;
+            left: 8px;
+        }
+        
+        .char-bambi-spot2 {
+            top: 17px;
+            left: 12px;
+        }
+        
+        /* Green T-Shirt (Volunteering - deprecated, using bambi instead) */
+        .char-green-shirt {
+            width: 35px;
+            height: 20px;
+            top: 70px;
+            left: 22.5px;
+            background: #7FB069;
+            border: 2px solid var(--main-color);
+            clip-path: polygon(30% 0%, 70% 0%, 100% 100%, 0% 100%);
+            z-index: 2;
+        }
+        
+        /* Mobile adjustments */
+        @media (max-width: 768px) {
+            .scroll-character {
+                width: 60px;
+                height: 75px;
+                bottom: 20px;
+                right: 20px;
+            }
+            
+            .char-hair { width: 38px; height: 23px; top: 6px; left: 11px; }
+            .char-head { width: 38px; height: 45px; top: 9px; left: 11px; }
+            .char-glasses { width: 32px; height: 11px; top: 24px; left: 14px; }
+            .char-body { width: 45px; height: 30px; top: 51px; left: 7.5px; }
+            .char-shirt { width: 26px; height: 15px; top: 52px; left: 17px; }
+        }
+        
         /* Responsive */
         @media (max-width: 768px) {
             .container {
                 padding: 0 1.5rem;
+            }
+            
+            .nav-menu {
+                width: 250px;
+                top: 70px;
+            }
+            
+            .nav-menu.active {
+                right: 10px;
             }
             
             .hero {
@@ -715,30 +1396,63 @@
     </style>
 </head>
 <body>
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress">
+        <div class="scroll-progress-bar" id="scrollProgress"></div>
+    </div>
+    
     <!-- Header -->
     <header>
         <div class="container">
             <div class="header-content">
-                <div class="logo">Michael Stähli</div>
-                <div class="lang-switcher">
-                    <button class="lang-btn active" data-lang="en" aria-label="Switch to English">EN</button>
-                    <button class="lang-btn" data-lang="de" aria-label="Switch to German">DE</button>
+                <!-- Left Side: Profile Pic + Name + Main Nav -->
+                <div class="header-left">
+                    <a href="#top" class="logo-link" id="homeButton">
+                        <div class="header-profile-pic">
+                            <div class="hp-hair"></div>
+                            <div class="hp-head"></div>
+                            <div class="hp-glasses">
+                                <div class="hp-glasses-bridge"></div>
+                            </div>
+                            <div class="hp-beard"></div>
+                            <div class="hp-smile"></div>
+                        </div>
+                        <div class="logo">Michael Stähli</div>
+                    </a>
+                    
+                    <!-- Main Navigation (CV / Competence Profile) -->
+                    <nav class="main-nav">
+                        <button class="nav-btn active" data-view="cv">CV</button>
+                        <span class="nav-separator">|</span>
+                        <button class="nav-btn" data-view="competence">Competence Profile</button>
+                    </nav>
+                </div>
+                
+                <!-- Right Side: Language Switcher -->
+                <div class="header-right">
+                    <div class="lang-switcher">
+                        <button class="lang-btn active" data-lang="en" aria-label="Switch to English">EN</button>
+                        <button class="lang-btn" data-lang="de" aria-label="Switch to German">DE</button>
+                    </div>
                 </div>
             </div>
         </div>
     </header>
 
     <main>
+        <!-- CV View -->
+        <div class="view-content active" id="cv-view">
+        
         <!-- Hero Section -->
         <section class="hero">
             <div class="container">
                 <div class="card hero-card animate-in">
-                    <h1>Michael Stähli</h1>
+                    <h1 data-i18n="hero.title">Hi, I'm Michael</h1>
                     <p class="hero-subtitle" data-i18n="hero.subtitle">
                         Technology & Transformation Consultant | Environmental Impact
                     </p>
                     
-                    <!-- Personal Information with Profile Picture -->
+                    <!-- Personal Information -->
                     <div class="profile-section">
                         <div class="info-badge">
                             <div class="info-badge-label">Born</div>
@@ -751,22 +1465,6 @@
                         <div class="info-badge">
                             <div class="info-badge-label">Location</div>
                             <div class="info-badge-value">Lachen, Switzerland</div>
-                        </div>
-                        
-                        <!-- Profile Picture Card -->
-                        <div class="profile-picture-card">
-                            <div class="profile-img">
-                                <div class="hair"></div>
-                                <div class="head"></div>
-                                <div class="glasses">
-                                    <div class="glasses-bridge"></div>
-                                </div>
-                                <div class="beard"></div>
-                                <div class="smile"></div>
-                                <div class="shirt"></div>
-                                <div class="body"></div>
-                                <div class="pocket-square"></div>
-                            </div>
                         </div>
                     </div>
                     
@@ -787,51 +1485,8 @@
                 </div>
             </div>
         </section>
-
-        <!-- Objectives Section -->
-        <section id="objectives">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title" data-i18n="objectives.title">Objectives</h2>
-                </div>
-                <div class="card">
-                    <p data-i18n="objectives.content">I aim to leverage my technical and transformation expertise to accelerate environmental solutions with measurable ecological impact. I seek to bridge complex environmental challenges with scalable technological implementations, enabling organizations to achieve ambitious sustainability goals. Through my combination of financial services transformation experience and emerging environmental knowledge, I can help organizations navigate sustainable business models, green finance innovations, and net-zero strategies.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Key Achievements Section -->
-        <section id="achievements">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title" data-i18n="achievements.title">Key Achievements</h2>
-                </div>
-                <div class="achievements-grid">
-                    <div class="card">
-                        <div class="achievement-title">Built IT Architecture & Strategy Department</div>
-                        <p>Established reusable frameworks at Synpulse8 for microservices, information security KPIs, and technology assessments</p>
-                    </div>
-                    <div class="card">
-                        <div class="achievement-title">Co-developed Swiss FAPI 2.0 Standards</div>
-                        <p>Stream lead for API security, collaborating with SFTI and SIX to create national framework for financial services</p>
-                    </div>
-                    <div class="card">
-                        <div class="achievement-title">Designed Sustainable Investment Innovation</div>
-                        <p>Co-created retirement app at PostFinance with Paris Agreement-aligned portfolio screening and carbon tracking</p>
-                    </div>
-                    <div class="card">
-                        <div class="achievement-title">Led End-to-End CRM Implementation</div>
-                        <p>From requirements through deployment for asset managers and health insurers with process digitalization</p>
-                    </div>
-                    <div class="card">
-                        <div class="achievement-title">Coached ESG-Focused Startups</div>
-                        <p>Provided guidance on go-to-market strategy and partnership models for sustainable business ventures</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Experience Section -->
+        
+        <!-- Work Experience Section -->
         <section id="experience">
             <div class="container">
                 <div class="section-header">
@@ -912,61 +1567,78 @@
                         </div>
                     </div>
 
-                    <!-- VZ Vermögenszentrum -->
+                    <!-- Early Career Development (Dropdown) -->
                     <div class="card">
-                        <div class="timeline-date">11.2017 – 05.2018</div>
-                        <div class="timeline-title">Assistant, Financial Consultant, 20%</div>
-                        <span class="timeline-company">VZ Vermögenszentrum, Zurich</span>
-                    </div>
-
-                    <!-- BSc International Management -->
-                    <div class="card">
-                        <div class="timeline-date">08.2016 – 10.2017</div>
-                        <div class="timeline-title">Fulltime BSc International Management</div>
-                        <span class="timeline-company">Zurich University of Applied Sciences</span>
-                    </div>
-
-                    <!-- Cultural Exchange Mexico -->
-                    <div class="card">
-                        <div class="timeline-date">02.2015 – 03.2016</div>
-                        <div class="timeline-title">Cultural Exchange - Mexico</div>
-                        <span class="timeline-company">Universidad de Hermosillo</span>
-                    </div>
-
-                    <!-- ARVEST Backoffice -->
-                    <div class="card">
-                        <div class="timeline-date">12.2012 – 12.2014</div>
-                        <div class="timeline-title">Backoffice – Client Administration, 100%</div>
-                        <span class="timeline-company">ARVEST Privatbank AG, Pfäffikon SZ</span>
-                        <hr class="card-divider">
-                        <div class="timeline-description">
-                            <ul>
-                                <li>Portfolio management and valuation, optimizing financial performance</li>
-                                <li>Daily treasury management</li>
-                                <li>Participated in the asset management committee, including decision-making</li>
-                            </ul>
+                        <div class="dropdown-toggle" id="earlyCareerToggle">
+                            <div>
+                                <div class="timeline-date">2011 – 2017</div>
+                                <div class="timeline-title">Early Career Development</div>
+                                <span class="timeline-company">Various positions including banking, education, and military service</span>
+                            </div>
+                            <div class="dropdown-icon">▼</div>
                         </div>
-                    </div>
+                        
+                        <div class="dropdown-content" id="earlyCareerContent">
+                            <hr class="card-divider">
+                            <div class="dropdown-items">
+                                <!-- VZ Vermögenszentrum -->
+                                <div class="card" style="margin: 0;">
+                                    <div class="timeline-date">11.2017 – 05.2018</div>
+                                    <div class="timeline-title">Assistant, Financial Consultant, 20%</div>
+                                    <span class="timeline-company">VZ Vermögenszentrum, Zurich</span>
+                                </div>
 
-                    <!-- Language Exchange Vancouver -->
-                    <div class="card">
-                        <div class="timeline-date">04.2012 – 11.2012</div>
-                        <div class="timeline-title">Language Exchange - Vancouver</div>
-                        <span class="timeline-company">Global Village, Vancouver</span>
-                    </div>
+                                <!-- BSc International Management -->
+                                <div class="card" style="margin: 0;">
+                                    <div class="timeline-date">08.2016 – 10.2017</div>
+                                    <div class="timeline-title">Fulltime BSc International Management</div>
+                                    <span class="timeline-company">Zurich University of Applied Sciences</span>
+                                </div>
 
-                    <!-- Military Training -->
-                    <div class="card">
-                        <div class="timeline-date">10.2011 – 03.2012</div>
-                        <div class="timeline-title">Basic Military Training</div>
-                        <span class="timeline-company">Swiss Army, Dübendorf, Switzerland</span>
-                    </div>
+                                <!-- Cultural Exchange Mexico -->
+                                <div class="card" style="margin: 0;">
+                                    <div class="timeline-date">02.2015 – 03.2016</div>
+                                    <div class="timeline-title">Cultural Exchange - Mexico</div>
+                                    <span class="timeline-company">Universidad de Hermosillo</span>
+                                </div>
 
-                    <!-- ARVEST First Position -->
-                    <div class="card">
-                        <div class="timeline-date">07.2011 – 09.2011</div>
-                        <div class="timeline-title">Backoffice – Client Administration, 100%</div>
-                        <span class="timeline-company">ARVEST Privatbank AG, Pfäffikon SZ</span>
+                                <!-- ARVEST Backoffice -->
+                                <div class="card" style="margin: 0;">
+                                    <div class="timeline-date">12.2012 – 12.2014</div>
+                                    <div class="timeline-title">Backoffice – Client Administration, 100%</div>
+                                    <span class="timeline-company">ARVEST Privatbank AG, Pfäffikon SZ</span>
+                                    <hr class="card-divider">
+                                    <div class="timeline-description">
+                                        <ul>
+                                            <li>Portfolio management and valuation, optimizing financial performance</li>
+                                            <li>Daily treasury management</li>
+                                            <li>Participated in the asset management committee, including decision-making</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <!-- Language Exchange Vancouver -->
+                                <div class="card" style="margin: 0;">
+                                    <div class="timeline-date">04.2012 – 11.2012</div>
+                                    <div class="timeline-title">Language Exchange - Vancouver</div>
+                                    <span class="timeline-company">Global Village, Vancouver</span>
+                                </div>
+
+                                <!-- Military Training -->
+                                <div class="card" style="margin: 0;">
+                                    <div class="timeline-date">10.2011 – 03.2012</div>
+                                    <div class="timeline-title">Basic Military Training</div>
+                                    <span class="timeline-company">Swiss Army, Dübendorf, Switzerland</span>
+                                </div>
+
+                                <!-- ARVEST First Position -->
+                                <div class="card" style="margin: 0;">
+                                    <div class="timeline-date">07.2011 – 09.2011</div>
+                                    <div class="timeline-title">Backoffice – Client Administration, 100%</div>
+                                    <span class="timeline-company">ARVEST Privatbank AG, Pfäffikon SZ</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1025,12 +1697,177 @@
             </div>
         </section>
 
-        <!-- Skills Section -->
-        <section id="skills">
+        <!-- Languages Section -->
+        <section id="languages">
             <div class="container">
                 <div class="section-header">
-                    <h2 class="section-title" data-i18n="skills.title">Key Competencies</h2>
+                    <h2 class="section-title" data-i18n="languages.title">Languages</h2>
                 </div>
+                <div class="card">
+                    <div class="language-item">
+                        <div class="language-header">
+                            <span class="language-name">German</span>
+                            <span class="language-level">Native</span>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" data-progress="100" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <div class="language-item">
+                        <div class="language-header">
+                            <span class="language-name">English</span>
+                            <span class="language-level">Proficiency</span>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" data-progress="90" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <div class="language-item">
+                        <div class="language-header">
+                            <span class="language-name">Spanish</span>
+                            <span class="language-level">Intermediate</span>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" data-progress="60" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <div class="language-item">
+                        <div class="language-header">
+                            <span class="language-name">French</span>
+                            <span class="language-level">Intermediate</span>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" data-progress="60" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certificates Section -->
+        <section id="certificates">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title" data-i18n="certificates.title">Certificates</h2>
+                </div>
+                <div class="cert-grid">
+                    <div class="card cert-card">
+                        <div class="cert-year">2025</div>
+                        <div class="cert-name">Green Software Practitioner</div>
+                        <div class="cert-org">Green Software Foundation</div>
+                    </div>
+                    <div class="card cert-card">
+                        <div class="cert-year">2024</div>
+                        <div class="cert-name">Certified Information Security Manager (CISM)</div>
+                        <div class="cert-org">ISACA (accreditation pending)</div>
+                    </div>
+                    <div class="card cert-card">
+                        <div class="cert-year">2024</div>
+                        <div class="cert-name">Ethical Hacking Fundamentals</div>
+                        <div class="cert-org">EC-Council</div>
+                    </div>
+                    <div class="card cert-card">
+                        <div class="cert-year">2024</div>
+                        <div class="cert-name">Network Defense Fundamentals</div>
+                        <div class="cert-org">EC-Council</div>
+                    </div>
+                    <div class="card cert-card">
+                        <div class="cert-year">2024</div>
+                        <div class="cert-name">Digital Forensics Essentials</div>
+                        <div class="cert-org">EC-Council</div>
+                    </div>
+                    <div class="card cert-card">
+                        <div class="cert-year">2021</div>
+                        <div class="cert-name">Scrum Product Owner</div>
+                        <div class="cert-org">Scrum.org</div>
+                    </div>
+                    <div class="card cert-card">
+                        <div class="cert-year">2020</div>
+                        <div class="cert-name">Certified Professional for Requirements Engineering</div>
+                        <div class="cert-org">IREB</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Hobbies Section -->
+        <section id="hobbies">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title" data-i18n="hobbies.title">Hobbies & Interests</h2>
+                </div>
+                <div class="hobbies-grid">
+                    <div class="hobby-badge">🏄‍♂️ Surfing</div>
+                    <div class="hobby-badge">🏂 Snowboarding</div>
+                    <div class="hobby-badge">⛰️ Mountaineering</div>
+                    <div class="hobby-badge">🍳 Cooking</div>
+                    <div class="hobby-badge">🏺 Pottery</div>
+                    <div class="hobby-badge">✈️ Travel</div>
+                    <div class="hobby-badge">🌍 Subcultures</div>
+                    <div class="hobby-badge">📚 Continuous Learning</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Volunteering Section -->
+        <section id="volunteering">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title" data-i18n="volunteering.title">Volunteering</h2>
+                </div>
+                <div class="card">
+                    <div class="timeline-title">Volunteer</div>
+                    <span class="timeline-company">rehkitzrettung.ch</span>
+                    <hr class="card-divider">
+                    <div class="timeline-description">
+                        Active volunteer engagement in fawn rescue operations, contributing to wildlife conservation efforts
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        </div>
+        <!-- End CV View -->
+        
+        <!-- Competence Profile View -->
+        <div class="view-content" id="competence-view">
+            
+        <section id="competence-profile">
+            <div class="container">
+                
+                <!-- Objectives -->
+                <div class="card" style="margin-bottom: 2rem;">
+                    <h3 style="color: var(--main-focus); margin-bottom: 1rem;">Objectives</h3>
+                    <p>I aim to leverage my technical and transformation expertise to accelerate environmental solutions with measurable ecological impact. I seek to bridge complex environmental challenges with scalable technological implementations, enabling organizations to achieve ambitious sustainability goals. Through my combination of financial services transformation experience and emerging environmental knowledge, I can help organizations navigate sustainable business models, green finance innovations, and net-zero strategies.</p>
+                </div>
+                
+                <!-- Key Achievements -->
+                <h3 style="color: var(--main-color); margin-bottom: 1.5rem; font-size: 1.5rem;">Key Achievements</h3>
+                <div class="achievements-grid" style="margin-bottom: 2rem;">
+                    <div class="card">
+                        <div class="achievement-title">Built IT Architecture & Strategy Department</div>
+                        <p>Established reusable frameworks at Synpulse8 for microservices, information security KPIs, and technology assessments</p>
+                    </div>
+                    <div class="card">
+                        <div class="achievement-title">Co-developed Swiss FAPI 2.0 Standards</div>
+                        <p>Stream lead for API security, collaborating with SFTI and SIX to create national framework for financial services</p>
+                    </div>
+                    <div class="card">
+                        <div class="achievement-title">Designed Sustainable Investment Innovation</div>
+                        <p>Co-created retirement app at PostFinance with Paris Agreement-aligned portfolio screening and carbon tracking</p>
+                    </div>
+                    <div class="card">
+                        <div class="achievement-title">Led End-to-End CRM Implementation</div>
+                        <p>From requirements through deployment for asset managers and health insurers with process digitalization</p>
+                    </div>
+                    <div class="card">
+                        <div class="achievement-title">Coached ESG-Focused Startups</div>
+                        <p>Provided guidance on go-to-market strategy and partnership models for sustainable business ventures</p>
+                    </div>
+                </div>
+                
+                <!-- Key Competencies -->
+                <h3 style="color: var(--main-color); margin-bottom: 1.5rem; font-size: 1.5rem;">Key Competencies</h3>
                 <div class="skills-grid">
                     <div class="card skill-category">
                         <h3>Technical</h3>
@@ -1078,118 +1915,49 @@
                 </div>
             </div>
         </section>
-
-        <!-- Languages Section -->
-        <section id="languages">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title" data-i18n="languages.title">Languages</h2>
-                </div>
-                <div class="info-grid">
-                    <div class="card info-item">
-                        <span class="info-label">German</span>
-                        <span class="info-value">Native</span>
-                    </div>
-                    <div class="card info-item">
-                        <span class="info-label">English</span>
-                        <span class="info-value">Proficiency</span>
-                    </div>
-                    <div class="card info-item">
-                        <span class="info-label">Spanish</span>
-                        <span class="info-value">Intermediate</span>
-                    </div>
-                    <div class="card info-item">
-                        <span class="info-label">French</span>
-                        <span class="info-value">Intermediate</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Certificates Section -->
-        <section id="certificates">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title" data-i18n="certificates.title">Certificates</h2>
-                </div>
-                <div class="card">
-                    <ul class="cert-list">
-                        <li class="cert-item">
-                            <div class="cert-year">2025</div>
-                            <div class="cert-name">Green Software Practitioner</div>
-                            <div class="cert-org">Green Software Foundation</div>
-                        </li>
-                        <li class="cert-item">
-                            <div class="cert-year">2024</div>
-                            <div class="cert-name">Certified Information Security Manager (CISM)</div>
-                            <div class="cert-org">ISACA (accreditation pending)</div>
-                        </li>
-                        <li class="cert-item">
-                            <div class="cert-year">2024</div>
-                            <div class="cert-name">Ethical Hacking Fundamentals</div>
-                            <div class="cert-org">EC-Council</div>
-                        </li>
-                        <li class="cert-item">
-                            <div class="cert-year">2024</div>
-                            <div class="cert-name">Network Defense Fundamentals</div>
-                            <div class="cert-org">EC-Council</div>
-                        </li>
-                        <li class="cert-item">
-                            <div class="cert-year">2024</div>
-                            <div class="cert-name">Digital Forensics Essentials</div>
-                            <div class="cert-org">EC-Council</div>
-                        </li>
-                        <li class="cert-item">
-                            <div class="cert-year">2021</div>
-                            <div class="cert-name">Scrum Product Owner</div>
-                            <div class="cert-org">Scrum.org</div>
-                        </li>
-                        <li class="cert-item">
-                            <div class="cert-year">2020</div>
-                            <div class="cert-name">Certified Professional for Requirements Engineering</div>
-                            <div class="cert-org">IREB</div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- Hobbies Section -->
-        <section id="hobbies">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title" data-i18n="hobbies.title">Hobbies & Interests</h2>
-                </div>
-                <div class="hobbies-grid">
-                    <div class="hobby-badge">🏄‍♂️ Surfing</div>
-                    <div class="hobby-badge">🏂 Snowboarding</div>
-                    <div class="hobby-badge">⛰️ Mountaineering</div>
-                    <div class="hobby-badge">🍳 Cooking</div>
-                    <div class="hobby-badge">🏺 Pottery</div>
-                    <div class="hobby-badge">✈️ Travel</div>
-                    <div class="hobby-badge">🌍 Subcultures</div>
-                    <div class="hobby-badge">📚 Continuous Learning</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Volunteering Section -->
-        <section id="volunteering">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title" data-i18n="volunteering.title">Volunteering</h2>
-                </div>
-                <div class="card">
-                    <div class="timeline-title">Volunteer</div>
-                    <span class="timeline-company">rehkitzrettung.ch</span>
-                    <hr class="card-divider">
-                    <div class="timeline-description">
-                        Active volunteer engagement in fawn rescue operations, contributing to wildlife conservation efforts
-                    </div>
-                </div>
-            </div>
-        </section>
+            
+        </div>
+        <!-- End Competence Profile View -->
+        
     </main>
+
+    <!-- Animated Scrolling Character -->
+    <div class="scroll-character" id="scrollCharacter">
+        <div class="character-container">
+            <div class="char-hair"></div>
+            <div class="char-head"></div>
+            <div class="char-glasses">
+                <div class="char-glasses-bridge"></div>
+            </div>
+            <div class="char-beard"></div>
+            <div class="char-smile"></div>
+            <div class="char-neck"></div>
+            <div class="char-left-shoulder"></div>
+            <div class="char-right-shoulder"></div>
+            <div class="char-shirt-body"></div>
+            <div class="char-collar-left"></div>
+            <div class="char-collar-right"></div>
+            <div class="char-placket"></div>
+            <div class="char-button char-button1"></div>
+            <div class="char-button char-button2"></div>
+            <div class="char-button char-button3"></div>
+            
+            <!-- Accessories (shown/hidden based on section) -->
+            <div class="char-accessory char-hard-hat" data-section="experience"></div>
+            <div class="char-accessory char-grad-cap" data-section="education"></div>
+            <div class="char-accessory char-speech" data-section="languages"></div>
+            <div class="char-accessory char-diploma" data-section="certificates">
+                <div class="char-diploma-ribbon-right"></div>
+            </div>
+            <div class="char-accessory char-snowboard-helmet" data-section="hobbies"></div>
+            <div class="char-accessory char-bambi" data-section="volunteering">
+                <div class="char-bambi-ear-left"></div>
+                <div class="char-bambi-ear-right"></div>
+                <div class="char-bambi-spot1"></div>
+                <div class="char-bambi-spot2"></div>
+            </div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer>
@@ -1200,107 +1968,252 @@
     </footer>
 
     <script>
-        // Translations
-        const translations = {
-            en: {
-                'hero.subtitle': 'Technology & Transformation Consultant | Environmental Impact',
-                'hero.description': 'I am a Technology & Transformation Consultant with 15 years of experience, including 7 years transforming financial services through enterprise architecture and digital innovation while leading cross-functional teams and managing stakeholders across all organizational levels. Now channeling this expertise toward social-, economic- and ecological value generation, and supporting organizations to achieve net-zero profitability. On a strategic career break to pivot from fintech to purpose-driven work, pursuing a Master of Science in Environment and Natural Resources with major in Ecological Engineering and Renewable Energy to build foundational knowledge for lasting impact. I excel at untangling complex systems and translating technical depth into actionable clarity—communicating effectively across four languages (German, English, Spanish, French) and collaborating with diverse, multidisciplinary teams. Seeking organizations where rigorous problem-solving drives meaningful environmental change.',
-                'objectives.title': 'Objectives',
-                'objectives.content': 'I aim to leverage my technical and transformation expertise to accelerate environmental solutions with measurable ecological impact. I seek to bridge complex environmental challenges with scalable technological implementations, enabling organizations to achieve ambitious sustainability goals. Through my combination of financial services transformation experience and emerging environmental knowledge, I can help organizations navigate sustainable business models, green finance innovations, and net-zero strategies.',
-                'achievements.title': 'Key Achievements',
-                'experience.title': 'Work Experience',
-                'education.title': 'Education',
-                'skills.title': 'Key Competencies',
-                'languages.title': 'Languages',
-                'certificates.title': 'Certificates',
-                'hobbies.title': 'Hobbies & Interests',
-                'volunteering.title': 'Volunteering'
-            },
-            de: {
-                'hero.subtitle': 'Technologie & Transformationsberater | Umweltauswirkungen',
-                'hero.description': 'Ich bin ein Technologie- und Transformationsberater mit 15 Jahren Erfahrung, davon 7 Jahre in der Transformation von Finanzdienstleistungen durch Enterprise-Architektur und digitale Innovation, während ich funktionsübergreifende Teams leitete und Stakeholder auf allen Organisationsebenen verwaltete. Jetzt setze ich dieses Fachwissen für die Generierung von sozialen, wirtschaftlichen und ökologischen Werten ein und unterstütze Organisationen dabei, Net-Zero-Profitabilität zu erreichen. In einer strategischen Karrierepause, um von Fintech zu sinnvoller Arbeit zu wechseln, verfolge ich einen Master of Science in Umwelt und natürlichen Ressourcen mit Schwerpunkt Ökologisches Engineering und Erneuerbare Energien, um grundlegendes Wissen für nachhaltige Wirkung aufzubauen. Ich zeichne mich durch das Entwirren komplexer Systeme und die Übersetzung technischer Tiefe in umsetzbare Klarheit aus – kommuniziere effektiv in vier Sprachen (Deutsch, Englisch, Spanisch, Französisch) und arbeite mit vielfältigen, multidisziplinären Teams zusammen. Ich suche Organisationen, in denen rigorose Problemlösung zu bedeutsamen Umweltveränderungen führt.',
-                'objectives.title': 'Ziele',
-                'objectives.content': 'Ich möchte mein technisches und Transformationsfachwissen nutzen, um Umweltlösungen mit messbarer ökologischer Wirkung zu beschleunigen. Ich strebe danach, komplexe Umweltherausforderungen mit skalierbaren technologischen Implementierungen zu verbinden und Organisationen zu ermöglichen, ehrgeizige Nachhaltigkeitsziele zu erreichen. Durch meine Kombination aus Erfahrung in der Transformation von Finanzdienstleistungen und aufstrebendem Umweltwissen kann ich Organisationen bei der Navigation nachhaltiger Geschäftsmodelle, grüner Finanzinnovationen und Net-Zero-Strategien unterstützen.',
-                'achievements.title': 'Wichtigste Erfolge',
-                'experience.title': 'Berufserfahrung',
-                'education.title': 'Ausbildung',
-                'skills.title': 'Schlüsselkompetenzen',
-                'languages.title': 'Sprachen',
-                'certificates.title': 'Zertifikate',
-                'hobbies.title': 'Hobbys & Interessen',
-                'volunteering.title': 'Freiwilligenarbeit'
-            }
-        };
+        // Wait for DOM to be fully loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // Translations
+            const translations = {
+                en: {
+                    'hero.title': "Hi, I'm Michael",
+                    'hero.subtitle': 'Technology & Transformation Consultant | Environmental Impact',
+                    'hero.description': 'I am a Technology & Transformation Consultant with 15 years of experience, including 7 years transforming financial services through enterprise architecture and digital innovation while leading cross-functional teams and managing stakeholders across all organizational levels. Now channeling this expertise toward social-, economic- and ecological value generation, and supporting organizations to achieve net-zero profitability. On a strategic career break to pivot from fintech to purpose-driven work, pursuing a Master of Science in Environment and Natural Resources with major in Ecological Engineering and Renewable Energy to build foundational knowledge for lasting impact. I excel at untangling complex systems and translating technical depth into actionable clarity—communicating effectively across four languages (German, English, Spanish, French) and collaborating with diverse, multidisciplinary teams. Seeking organizations where rigorous problem-solving drives meaningful environmental change.',
+                    'objectives.title': 'Objectives',
+                    'objectives.content': 'I aim to leverage my technical and transformation expertise to accelerate environmental solutions with measurable ecological impact. I seek to bridge complex environmental challenges with scalable technological implementations, enabling organizations to achieve ambitious sustainability goals. Through my combination of financial services transformation experience and emerging environmental knowledge, I can help organizations navigate sustainable business models, green finance innovations, and net-zero strategies.',
+                    'achievements.title': 'Key Achievements',
+                    'experience.title': 'Work Experience',
+                    'education.title': 'Education',
+                    'skills.title': 'Key Competencies',
+                    'languages.title': 'Languages',
+                    'certificates.title': 'Certificates',
+                    'hobbies.title': 'Hobbies & Interests',
+                    'volunteering.title': 'Volunteering'
+                },
+                de: {
+                    'hero.title': 'Hallo, ich bin Michael',
+                    'hero.subtitle': 'Technologie & Transformationsberater | Umweltauswirkungen',
+                    'hero.description': 'Ich bin ein Technologie- und Transformationsberater mit 15 Jahren Erfahrung, davon 7 Jahre in der Transformation von Finanzdienstleistungen durch Enterprise-Architektur und digitale Innovation, während ich funktionsübergreifende Teams leitete und Stakeholder auf allen Organisationsebenen verwaltete. Jetzt setze ich dieses Fachwissen für die Generierung von sozialen, wirtschaftlichen und ökologischen Werten ein und unterstütze Organisationen dabei, Net-Zero-Profitabilität zu erreichen. In einer strategischen Karrierepause, um von Fintech zu sinnvoller Arbeit zu wechseln, verfolge ich einen Master of Science in Umwelt und natürlichen Ressourcen mit Schwerpunkt Ökologisches Engineering und Erneuerbare Energien, um grundlegendes Wissen für nachhaltige Wirkung aufzubauen. Ich zeichne mich durch das Entwirren komplexer Systeme und die Übersetzung technischer Tiefe in umsetzbare Klarheit aus – kommuniziere effektiv in vier Sprachen (Deutsch, Englisch, Spanisch, Französisch) und arbeite mit vielfältigen, multidisziplinären Teams zusammen. Ich suche Organisationen, in denen rigorose Problemlösung zu bedeutsamen Umweltveränderungen führt.',
+                    'objectives.title': 'Ziele',
+                    'objectives.content': 'Ich möchte mein technisches und Transformationsfachwissen nutzen, um Umweltlösungen mit messbarer ökologischer Wirkung zu beschleunigen. Ich strebe danach, komplexe Umweltherausforderungen mit skalierbaren technologischen Implementierungen zu verbinden und Organisationen zu ermöglichen, ehrgeizige Nachhaltigkeitsziele zu erreichen. Durch meine Kombination aus Erfahrung in der Transformation von Finanzdienstleistungen und aufstrebendem Umweltwissen kann ich Organisationen bei der Navigation nachhaltiger Geschäftsmodelle, grüner Finanzinnovationen und Net-Zero-Strategien unterstützen.',
+                    'achievements.title': 'Wichtigste Erfolge',
+                    'experience.title': 'Berufserfahrung',
+                    'education.title': 'Ausbildung',
+                    'skills.title': 'Schlüsselkompetenzen',
+                    'languages.title': 'Sprachen',
+                    'certificates.title': 'Zertifikate',
+                    'hobbies.title': 'Hobbys & Interessen',
+                    'volunteering.title': 'Freiwilligenarbeit'
+                }
+            };
 
-        // Language switcher
-        let currentLang = 'en';
-        
-        function switchLanguage(lang) {
-            currentLang = lang;
+            // Language switcher
+            let currentLang = 'en';
             
-            // Update button states
+            function switchLanguage(lang) {
+                currentLang = lang;
+                
+                // Update button states
+                document.querySelectorAll('.lang-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                    if (btn.dataset.lang === lang) {
+                        btn.classList.add('active');
+                    }
+                });
+                
+                // Update content
+                document.querySelectorAll('[data-i18n]').forEach(element => {
+                    const key = element.dataset.i18n;
+                    if (translations[lang] && translations[lang][key]) {
+                        element.textContent = translations[lang][key];
+                    }
+                });
+                
+                // Update HTML lang attribute
+                document.documentElement.lang = lang;
+            }
+            
+            // Event listeners for language buttons
             document.querySelectorAll('.lang-btn').forEach(btn => {
-                btn.classList.remove('active');
-                if (btn.dataset.lang === lang) {
-                    btn.classList.add('active');
-                }
+                btn.addEventListener('click', function() {
+                    switchLanguage(this.dataset.lang);
+                });
             });
             
-            // Update content
-            document.querySelectorAll('[data-i18n]').forEach(element => {
-                const key = element.dataset.i18n;
-                if (translations[lang][key]) {
-                    element.textContent = translations[lang][key];
-                }
-            });
+            // Set initial language based on browser preference
+            const browserLang = navigator.language.split('-')[0];
+            if (browserLang === 'de' && translations.de) {
+                switchLanguage('de');
+            }
             
-            // Update HTML lang attribute
-            document.documentElement.lang = lang;
-        }
-        
-        // Event listeners
-        document.querySelectorAll('.lang-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                switchLanguage(btn.dataset.lang);
-            });
-        });
-        
-        // Set initial language based on browser preference
-        const browserLang = navigator.language.split('-')[0];
-        if (browserLang === 'de' && translations.de) {
-            switchLanguage('de');
-        }
-        
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
+            // View Switching (CV ↔ Competence Profile)
+            const navBtns = document.querySelectorAll('.nav-btn');
+            const viewContents = document.querySelectorAll('.view-content');
+            const scrollCharacter = document.getElementById('scrollCharacter');
+            
+            
+            navBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const viewName = this.dataset.view;
+                    
+                    // Update button states
+                    navBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Update view visibility
+                    viewContents.forEach(view => {
+                        if (view.id === viewName + '-view') {
+                            view.classList.add('active');
+                        } else {
+                            view.classList.remove('active');
+                        }
                     });
-                }
+                    
+                    // Show/hide character (only on CV view)
+                    if (scrollCharacter) {
+                        if (viewName === 'cv') {
+                            scrollCharacter.style.display = 'block';
+                        } else {
+                            scrollCharacter.style.display = 'none';
+                        }
+                    }
+                    
+                    // Scroll to top when switching views
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
             });
-        });
-        
-        // Add scroll animation observer
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-in');
-                }
+            
+            // Home Button (Profile Pic) - Scroll to Top
+            const homeButton = document.getElementById('homeButton');
+            if (homeButton) {
+                homeButton.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
+            
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    const href = this.getAttribute('href');
+                    if (href === '#' || href === '#top') {
+                        e.preventDefault();
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                        return;
+                    }
+                    
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
             });
-        }, observerOptions);
-        
-        document.querySelectorAll('.card').forEach(element => {
-            observer.observe(element);
+            
+            // Scroll Progress Bar
+            const scrollProgress = document.getElementById('scrollProgress');
+            
+            function updateScrollProgress() {
+                if (scrollProgress) {
+                    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                    const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                    const scrollPercent = (scrollTop / scrollHeight) * 100;
+                    scrollProgress.style.width = scrollPercent + '%';
+                }
+            }
+            
+            window.addEventListener('scroll', updateScrollProgress);
+            
+            // Card scroll animation observer
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const cardObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-in');
+                    }
+                });
+            }, observerOptions);
+            
+            document.querySelectorAll('.card').forEach(element => {
+                cardObserver.observe(element);
+            });
+            
+            // Animate Progress Bars on Scroll (Languages)
+            const progressObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const progressBars = entry.target.querySelectorAll('.progress-bar');
+                        progressBars.forEach(bar => {
+                            const progress = bar.getAttribute('data-progress');
+                            if (progress) {
+                                setTimeout(() => {
+                                    bar.style.width = progress + '%';
+                                }, 200);
+                            }
+                        });
+                        progressObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.3 });
+            
+            const languagesSection = document.getElementById('languages');
+            if (languagesSection) {
+                progressObserver.observe(languagesSection);
+            }
+            
+            // Early Career Dropdown Toggle
+            const earlyCareerToggle = document.getElementById('earlyCareerToggle');
+            const earlyCareerContent = document.getElementById('earlyCareerContent');
+            
+            if (earlyCareerToggle && earlyCareerContent) {
+                earlyCareerToggle.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    earlyCareerContent.classList.toggle('active');
+                });
+            }
+            
+            // Animated Scroll Character - Outfit Changes
+            const accessories = document.querySelectorAll('.char-accessory');
+            
+            function updateCharacterOutfit() {
+                if (!scrollCharacter) return;
+                
+                const scrollPosition = window.pageYOffset;
+                const sections = document.querySelectorAll('#cv-view section[id]');
+                
+                let currentSection = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 300;
+                    const sectionBottom = sectionTop + section.offsetHeight;
+                    
+                    if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                        currentSection = section.getAttribute('id');
+                    }
+                });
+                
+                // Hide all accessories
+                accessories.forEach(acc => acc.classList.remove('active'));
+                
+                // Show relevant accessory for current section
+                if (currentSection) {
+                    const currentAccessory = document.querySelector(`.char-accessory[data-section="${currentSection}"]`);
+                    if (currentAccessory) {
+                        currentAccessory.classList.add('active');
+                    }
+                }
+            }
+            
+            // Update character outfit on scroll
+            window.addEventListener('scroll', updateCharacterOutfit);
+            
+            // Initial updates
+            updateScrollProgress();
+            updateCharacterOutfit();
         });
     </script>
 </body>
