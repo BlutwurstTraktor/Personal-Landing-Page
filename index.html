@@ -1022,10 +1022,10 @@
         /* White T-Shirt (Hobbies & Volunteering) */
         .char-tshirt {
             width: 58px;
-            height: 40px;
-            top: 62px;
+            height: 42px;
+            top: 60px;
             left: 11px;
-            z-index: 15; /* Above everything - shirt, collar, buttons */
+            z-index: 50; /* EXTREME - Above shirt, collar, buttons */
         }
         
         /* T-shirt body - white with round neck */
@@ -1033,23 +1033,23 @@
             content: '';
             position: absolute;
             width: 58px;
-            height: 40px;
+            height: 42px;
             top: 0;
             left: 0;
             background: white;
-            border: 2px solid var(--main-color);
+            border: 2.5px solid var(--main-color);
             border-radius: 0 0 4px 4px;
-            clip-path: polygon(12% 0%, 88% 0%, 100% 100%, 0% 100%);
+            clip-path: polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%);
         }
         
         /* Round neck cutout */
         .char-tshirt::after {
             content: '';
             position: absolute;
-            width: 20px;
-            height: 12px;
-            top: -3px;
-            left: 19px;
+            width: 22px;
+            height: 14px;
+            top: -4px;
+            left: 18px;
             background: var(--bg-page);
             border-radius: 50% 50% 0 0;
         }
@@ -1129,13 +1129,14 @@
         
         /* Certificate/Diploma - LEFT SIDE (Certificates) */
         /* Award Ribbon - LEFT SIDE (Certificates) - Repositioned Higher */
-        /* Award Ribbon - RIGHT CHEST (Certificates) - Smaller */
+        /* Award Ribbon - LEFT CHEST (Certificates) - Smaller */
         .char-diploma {
             width: 14px;
             height: 20px;
             top: 78px;
-            right: 12px;
-            left: auto;
+            left: 12px;
+            right: auto;
+            z-index: 20;
         }
         
         /* Ribbon circle/medal - smaller */
@@ -1180,13 +1181,12 @@
         }
         
         /* Party Hat (Certificates) */
-        /* Party Hat (Certificates) */
         .char-party-hat {
             width: 28px;
             height: 26px;
             top: 0px;
             left: 26px;
-            z-index: 5;
+            z-index: 100; /* EXTREME - Above everything */
         }
         
         /* Hat cone - pink triangle */
@@ -1265,49 +1265,65 @@
         
         /* Snowboard Helmet (Hobbies) */
         /* Surfboard (Hobbies) - RIGHT SIDE - Repositioned to be visible */
-        /* Surfboard (Hobbies) - LEFT SIDE - Avatar Size */
+        /* Surfboard (Hobbies) - LEFT SIDE - Realistic Design */
         .char-snowboard-helmet {
-            width: 22px;
-            height: 88px;
-            top: 12px;
-            left: -28px;
+            width: 18px;
+            height: 70px;
+            top: 18px;
+            left: -24px;
             right: auto;
+            z-index: 5;
         }
         
-        /* Surfboard body - longboard shape */
+        /* Surfboard body - sleek shortboard shape */
         .char-snowboard-helmet::before {
             content: '';
             position: absolute;
-            width: 22px;
-            height: 88px;
+            width: 18px;
+            height: 70px;
             top: 0;
             left: 0;
-            background: linear-gradient(135deg, #4ECDC4 0%, #44A5A0 50%, #3A8B87 100%);
+            background: linear-gradient(180deg, #4ECDC4 0%, #44A5A0 40%, #3FB8B3 60%, #3A8B87 100%);
             border: 2.5px solid var(--main-color);
-            border-radius: 11px 11px 16px 16px;
+            border-radius: 9px 9px 13px 13px;
             clip-path: polygon(
                 50% 0%,
-                100% 5%,
-                100% 85%,
+                90% 3%,
+                100% 15%,
+                100% 80%,
+                70% 95%,
                 50% 100%,
-                0% 85%,
-                0% 5%
+                30% 95%,
+                0% 80%,
+                0% 15%,
+                10% 3%
             );
         }
         
-        /* Surfboard stripe design */
+        /* Surfboard center stripe (single bold line) */
         .char-snowboard-helmet::after {
             content: '';
             position: absolute;
-            width: 14px;
-            height: 4px;
-            top: 30px;
-            left: 4px;
-            background: white;
-            border-radius: 2px;
-            box-shadow: 
-                0 6px 0 white,
-                0 12px 0 white;
+            width: 12px;
+            height: 40px;
+            top: 15px;
+            left: 3px;
+            background: linear-gradient(180deg, 
+                transparent 0%, 
+                transparent 15%,
+                rgba(255,255,255,0.8) 15%,
+                rgba(255,255,255,0.8) 25%,
+                transparent 25%,
+                transparent 40%,
+                rgba(255,255,255,0.8) 40%,
+                rgba(255,255,255,0.8) 50%,
+                transparent 50%,
+                transparent 65%,
+                rgba(255,255,255,0.8) 65%,
+                rgba(255,255,255,0.8) 75%,
+                transparent 75%
+            );
+            border-radius: 6px;
         }
         
         /* Bambi (Volunteering) - LEFT SIDE - Facing Right */
@@ -1485,17 +1501,14 @@
             .char-button3 { top: 76px; }
             
             /* Accessories mobile scaling */
-            /* T-shirt */
-            .char-tshirt { width: 44px; height: 30px; top: 47px; left: 8px; }
-            .char-tshirt::after { width: 15px; height: 9px; top: -2px; left: 14.5px; }
             
             /* Graduation Cap */
             .char-grad-cap { width: 34px; height: 6px; top: 4px; left: 13px; }
             .char-grad-cap::before { width: 24px; height: 9px; top: -9px; left: 3px; }
             .char-grad-cap::after { width: 2px; height: 11px; top: -2px; right: -6px; }
             
-            /* Party Hat */
-            .char-party-hat { width: 21px; height: 20px; top: 0px; left: 20px; }
+            /* Party Hat - EXTREME Z-INDEX */
+            .char-party-hat { width: 21px; height: 20px; top: 0px; left: 20px; z-index: 150; }
             .char-party-hat::before { border-left: 10.5px solid transparent; border-right: 10.5px solid transparent; border-bottom: 18px solid #FF6B9D; }
             .char-party-hat-border { border-left: 12px solid transparent; border-right: 12px solid transparent; border-bottom: 20px solid var(--main-color); }
             .char-party-hat::after { width: 23px; height: 5px; left: -1px; }
@@ -1503,16 +1516,21 @@
             .char-party-hat-dot2 { width: 3px; height: 3px; top: 11px; left: 6px; }
             .char-party-hat-dot3 { width: 3px; height: 3px; top: 11px; left: 12px; }
             
-            /* Ribbon */
-            .char-diploma { width: 11px; height: 16px; top: 59px; right: 9px; left: auto; }
+            /* Ribbon - LEFT CHEST */
+            .char-diploma { width: 11px; height: 16px; top: 59px; left: 9px; right: auto; z-index: 25; }
             .char-diploma::before { width: 11px; height: 11px; }
             .char-diploma::after { width: 4px; height: 8px; top: 10px; left: 1px; }
             .char-diploma-ribbon-right { width: 4px; height: 8px; top: 10px; left: 6px; }
             
-            /* Surfboard */
-            .char-snowboard-helmet { width: 17px; height: 66px; top: 9px; left: -21px; right: auto; }
-            .char-snowboard-helmet::before { width: 17px; height: 66px; }
-            .char-snowboard-helmet::after { width: 11px; height: 3px; top: 23px; left: 3px; box-shadow: 0 5px 0 white, 0 10px 0 white; }
+            /* Surfboard - LEFT SIDE - Realistic */
+            .char-snowboard-helmet { width: 14px; height: 53px; top: 14px; left: -18px; right: auto; z-index: 5; }
+            .char-snowboard-helmet::before { width: 14px; height: 53px; border-radius: 7px 7px 10px 10px; }
+            .char-snowboard-helmet::after { width: 9px; height: 30px; top: 12px; left: 2.5px; }
+            
+            /* T-Shirt - EXTREME Z-INDEX */
+            .char-tshirt { width: 44px; height: 32px; top: 45px; left: 8px; z-index: 100; }
+            .char-tshirt::before { width: 44px; height: 32px; border: 2.5px solid var(--main-color); }
+            .char-tshirt::after { width: 17px; height: 11px; top: -3px; left: 13.5px; }
             
             /* Deer/Bambi */
             .char-bambi { width: 26px; height: 32px; top: 38px; left: -30px; }
@@ -1538,35 +1556,50 @@
                 padding: 0 1.5rem;
             }
             
-            /* Mobile Header: Two-Row Layout */
+            /* Mobile Header: Clear Two-Row Layout */
             .header-content {
-                flex-wrap: wrap;
+                display: grid;
+                grid-template-columns: 1fr auto;
+                grid-template-rows: auto auto;
                 gap: 0.75rem;
-            }
-            
-            /* First row: Logo+Name and Language Switcher */
-            .header-left {
-                width: auto;
-                flex: 1;
-                justify-content: flex-start;
-                order: 1;
-            }
-            
-            .header-right {
-                width: auto;
-                order: 2;
-            }
-            
-            /* Second row: Main navigation takes full width */
-            .main-nav {
                 width: 100%;
-                order: 3;
-                justify-content: flex-start;
-                padding-left: 0;
             }
             
-            /* Logo link takes natural width */
+            /* Row 1, Col 1: Logo + Name (left) */
+            .header-left {
+                grid-column: 1;
+                grid-row: 1;
+                display: flex;
+                gap: 1rem;
+                justify-content: flex-start;
+                align-items: center;
+            }
+            
+            /* Row 1, Col 2: Language Switcher (right) */
+            .header-right {
+                grid-column: 2;
+                grid-row: 1;
+                display: flex;
+                gap: 0.5rem;
+                justify-content: flex-end;
+                align-items: center;
+            }
+            
+            /* Row 2: Main Navigation (full width) */
+            .main-nav {
+                grid-column: 1 / -1;
+                grid-row: 2;
+                display: flex;
+                gap: 0.75rem;
+                justify-content: flex-start;
+                width: 100%;
+            }
+            
+            /* Logo link */
             .logo-link {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
                 flex-shrink: 0;
             }
             
