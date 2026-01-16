@@ -118,14 +118,26 @@
         
         /* Header */
         header {
-            position: sticky;
+            position: fixed; /* Changed from sticky to fixed for better control */
             top: 0;
+            left: 0;
+            right: 0;
             background-color: var(--bg-color);
             border-bottom: 2px solid var(--main-color);
             box-shadow: 0 4px 0 0 var(--main-color);
             z-index: 1000; /* CRITICAL - Above everything */
             padding: 1.25rem 0;
             width: 100%;
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        header.header-hidden {
+            transform: translateY(-100%);
+        }
+        
+        /* Main content padding to account for fixed header */
+        body {
+            padding-top: 100px; /* Approximate header height */
         }
         
         /* Scroll Progress Bar */
@@ -1562,22 +1574,37 @@
                 padding: 1rem 0;
             }
             
-            /* Mobile Header: Clean 2-Row Layout */
+            /* Body padding for mobile fixed header (taller due to 2 rows) */
+            body {
+                padding-top: 130px;
+            }
+            
+            /* Mobile Header: Navigation Under Avatar */
             .header-content {
                 display: flex;
                 flex-wrap: wrap;
-                align-items: center;
-                gap: 0.5rem 0.75rem; /* vertical, horizontal gap */
+                align-items: flex-start;
+                gap: 0.75rem;
                 width: 100%;
             }
             
             /* Row 1 Left: Logo + Name (MS) */
             .header-left {
                 display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.75rem;
+                flex: 1 1 auto;
+                order: 1;
+            }
+            
+            /* Logo link stays horizontal */
+            .logo-link {
+                display: flex;
                 align-items: center;
                 gap: 0.5rem;
-                flex: 0 0 auto;
-                order: 1;
+                flex-shrink: 0;
+                text-decoration: none;
             }
             
             /* Row 1 Right: Language Switcher */
@@ -1587,26 +1614,14 @@
                 align-items: center;
                 flex: 0 0 auto;
                 order: 2;
-                margin-left: auto;
             }
             
-            /* Row 2: Full Width Navigation */
+            /* Navigation under logo (inside header-left) */
             .main-nav {
                 display: flex;
                 gap: 0.5rem;
                 align-items: center;
-                flex: 0 0 100%;
-                order: 3;
-                justify-content: flex-start;
-            }
-            
-            /* Logo link */
-            .logo-link {
-                display: flex;
-                align-items: center;
-                gap: 0.5rem;
-                flex-shrink: 0;
-                text-decoration: none;
+                width: 100%;
             }
             
             /* Logo smaller on mobile */
@@ -1777,7 +1792,7 @@
         <section class="hero">
             <div class="container">
                 <div class="card hero-card animate-in">
-                    <h1 data-i18n="hero.title">Hi, I'm Michael</h1>
+                    <h1 data-i18n="hero.title">Michael Stähli</h1>
                     <p class="hero-subtitle" data-i18n="hero.subtitle">
                         Technology & Transformation Consultant | Environmental Impact
                     </p>
@@ -2321,7 +2336,7 @@
             // Translations
             const translations = {
                 en: {
-                    'hero.title': "Hi, I'm Michael",
+                    'hero.title': 'Michael Stähli',
                     'hero.subtitle': 'Technology & Transformation Consultant | Environmental Impact',
                     'hero.description': 'I am a Technology & Transformation Consultant with 15 years of experience, including 7 years transforming financial services through enterprise architecture and digital innovation while leading cross-functional teams and managing stakeholders across all organizational levels. Now channeling this expertise toward social-, economic- and ecological value generation, and supporting organizations to achieve net-zero profitability. On a strategic career break to pivot from fintech to purpose-driven work, pursuing a Master of Science in Environment and Natural Resources with major in Ecological Engineering and Renewable Energy to build foundational knowledge for lasting impact. I excel at untangling complex systems and translating technical depth into actionable clarity—communicating effectively across four languages (German, English, Spanish, French) and collaborating with diverse, multidisciplinary teams. Seeking organizations where rigorous problem-solving drives meaningful environmental change.',
                     'objectives.title': 'Objectives',
@@ -2336,7 +2351,7 @@
                     'volunteering.title': 'Volunteering'
                 },
                 de: {
-                    'hero.title': 'Hallo, ich bin Michael',
+                    'hero.title': 'Michael Stähli',
                     'hero.subtitle': 'Technologie & Transformationsberater | Umweltauswirkungen',
                     'hero.description': 'Ich bin ein Technologie- und Transformationsberater mit 15 Jahren Erfahrung, davon 7 Jahre in der Transformation von Finanzdienstleistungen durch Enterprise-Architektur und digitale Innovation, während ich funktionsübergreifende Teams leitete und Stakeholder auf allen Organisationsebenen verwaltete. Jetzt setze ich dieses Fachwissen für die Generierung von sozialen, wirtschaftlichen und ökologischen Werten ein und unterstütze Organisationen dabei, Net-Zero-Profitabilität zu erreichen. In einer strategischen Karrierepause, um von Fintech zu sinnvoller Arbeit zu wechseln, verfolge ich einen Master of Science in Umwelt und natürlichen Ressourcen mit Schwerpunkt Ökologisches Engineering und Erneuerbare Energien, um grundlegendes Wissen für nachhaltige Wirkung aufzubauen. Ich zeichne mich durch das Entwirren komplexer Systeme und die Übersetzung technischer Tiefe in umsetzbare Klarheit aus – kommuniziere effektiv in vier Sprachen (Deutsch, Englisch, Spanisch, Französisch) und arbeite mit vielfältigen, multidisziplinären Teams zusammen. Ich suche Organisationen, in denen rigorose Problemlösung zu bedeutsamen Umweltveränderungen führt.',
                     'objectives.title': 'Ziele',
@@ -2600,6 +2615,38 @@
                     updateWelcomeBubble(lang);
                 });
             });
+            
+            // Smart Header - Show on scroll up, hide on scroll down
+            const header = document.querySelector('header');
+            let lastScrollY = window.pageYOffset;
+            let ticking = false;
+            
+            function updateHeader() {
+                const currentScrollY = window.pageYOffset;
+                
+                if (currentScrollY < 100) {
+                    // Always show header at top of page
+                    header.classList.remove('header-hidden');
+                } else if (currentScrollY > lastScrollY) {
+                    // Scrolling down - hide header
+                    header.classList.add('header-hidden');
+                } else {
+                    // Scrolling up - show header
+                    header.classList.remove('header-hidden');
+                }
+                
+                lastScrollY = currentScrollY;
+                ticking = false;
+            }
+            
+            function requestHeaderUpdate() {
+                if (!ticking) {
+                    window.requestAnimationFrame(updateHeader);
+                    ticking = true;
+                }
+            }
+            
+            window.addEventListener('scroll', requestHeaderUpdate);
             
             // Initial updates
             updateScrollProgress();
