@@ -378,7 +378,133 @@
         }
         
         .lang-btn:active {
-            transform: translateY(2px); /* Same as nav-btn */
+            transform: translateY(2px);
+        }
+        
+        /* Desktop/Mobile visibility toggles */
+        .desktop-only {
+            display: inline-block;
+        }
+        
+        .mobile-only {
+            display: none;
+        }
+        
+        /* Language Toggle Switch - Desktop Only */
+        .lang-switch {
+            font-size: 17px;
+            position: relative;
+            display: inline-block;
+            width: 5em;
+            height: 2.5em;
+            user-select: none;
+        }
+        
+        .lang-switch .lang-cb {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .lang-toggle {
+            position: absolute;
+            cursor: pointer;
+            width: 100%;
+            height: 100%;
+            background-color: var(--main-color);
+            border-radius: 0.1em;
+            transition: 0.4s;
+            text-transform: uppercase;
+            font-weight: 700;
+            overflow: hidden;
+            box-shadow: -0.3em 0 0 0 var(--main-color), -0.3em 0.3em 0 0 var(--main-color),
+                0.3em 0 0 0 var(--main-color), 0.3em 0.3em 0 0 var(--main-color), 0 0.3em 0 0 var(--main-color);
+        }
+        
+        .lang-toggle > .lang-left {
+            position: absolute;
+            display: flex;
+            width: 50%;
+            height: 88%;
+            background-color: var(--bg-color);
+            color: var(--main-color);
+            left: 0;
+            bottom: 0;
+            align-items: center;
+            justify-content: center;
+            transform-origin: right;
+            transform: rotateX(10deg);
+            transform-style: preserve-3d;
+            transition: all 150ms;
+            font-size: 0.85em;
+        }
+        
+        .lang-left::before {
+            position: absolute;
+            content: "";
+            width: 100%;
+            height: 100%;
+            background-color: #e0e0e0;
+            transform-origin: center left;
+            transform: rotateY(90deg);
+        }
+        
+        .lang-left::after {
+            position: absolute;
+            content: "";
+            width: 100%;
+            height: 100%;
+            background-color: #999;
+            transform-origin: center bottom;
+            transform: rotateX(90deg);
+        }
+        
+        .lang-toggle > .lang-right {
+            position: absolute;
+            display: flex;
+            width: 50%;
+            height: 88%;
+            background-color: var(--bg-color);
+            color: #999;
+            right: 1px;
+            bottom: 0;
+            align-items: center;
+            justify-content: center;
+            transform-origin: left;
+            transform: rotateX(10deg) rotateY(-45deg);
+            transform-style: preserve-3d;
+            transition: all 150ms;
+            font-size: 0.85em;
+        }
+        
+        .lang-right::before {
+            position: absolute;
+            content: "";
+            width: 100%;
+            height: 100%;
+            background-color: #e0e0e0;
+            transform-origin: center right;
+            transform: rotateY(-90deg);
+        }
+        
+        .lang-right::after {
+            position: absolute;
+            content: "";
+            width: 100%;
+            height: 100%;
+            background-color: #999;
+            transform-origin: center bottom;
+            transform: rotateX(90deg);
+        }
+        
+        .lang-switch input:checked + .lang-toggle > .lang-left {
+            transform: rotateX(10deg) rotateY(45deg);
+            color: #999;
+        }
+        
+        .lang-switch input:checked + .lang-toggle > .lang-right {
+            transform: rotateX(10deg) rotateY(0deg);
+            color: var(--main-focus);
         }
         
         /* Hero Section */
@@ -1464,6 +1590,15 @@
         
         /* Mobile adjustments */
         @media (max-width: 768px) {
+            /* Hide desktop toggle, show mobile buttons */
+            .desktop-only {
+                display: none !important;
+            }
+            
+            .mobile-only {
+                display: flex !important;
+            }
+            
             /* Show mobile text, hide desktop text */
             .mobile-text {
                 display: inline;
@@ -1787,8 +1922,18 @@
                 </nav>
                 
                 <!-- Right Side: Language Switcher -->
-                <div class="header-right">
-                    <div class="lang-switcher">
+<div class="header-right">
+                    <!-- Desktop: Toggle Switch -->
+                    <label class="lang-switch desktop-only">
+                        <input class="lang-cb" type="checkbox" id="langToggle" />
+                        <span class="lang-toggle">
+                            <span class="lang-left">EN</span>
+                            <span class="lang-right">DE</span>
+                        </span>
+                    </label>
+                    
+                    <!-- Mobile: Single Button -->
+                    <div class="lang-switcher mobile-only">
                         <button class="lang-btn active" data-lang="en" aria-label="Switch to English">EN</button>
                         <button class="lang-btn" data-lang="de" aria-label="Switch to German">DE</button>
                     </div>
@@ -2426,9 +2571,24 @@
                 
                 // Update welcome bubble (if it exists)
                 updateWelcomeBubble(lang);
+                
+                // Update toggle switch state (desktop)
+                const langToggle = document.getElementById('langToggle');
+                if (langToggle) {
+                    langToggle.checked = (lang === 'de');
+                }
             }
             
-            // Event listeners for language buttons
+            // Event listener for desktop toggle switch
+            const langToggle = document.getElementById('langToggle');
+            if (langToggle) {
+                langToggle.addEventListener('change', function() {
+                    const newLang = this.checked ? 'de' : 'en';
+                    switchLanguage(newLang);
+                });
+            }
+            
+            // Event listeners for language buttons (mobile)
             document.querySelectorAll('.lang-btn').forEach(btn => {
                 btn.addEventListener('click', function() {
                     // Check if mobile (window width <= 768px)
