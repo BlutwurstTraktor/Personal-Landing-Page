@@ -118,26 +118,21 @@
         
         /* Header */
         header {
-            position: fixed; /* Changed from sticky to fixed for better control */
+            position: fixed;
             top: 0;
             left: 0;
             right: 0;
             background-color: var(--bg-color);
             border-bottom: 2px solid var(--main-color);
             box-shadow: 0 4px 0 0 var(--main-color);
-            z-index: 1000; /* CRITICAL - Above everything */
+            z-index: 1000;
             padding: 1.25rem 0;
             width: 100%;
-            transition: transform 0.3s ease-in-out;
-        }
-        
-        header.header-hidden {
-            transform: translateY(-100%);
         }
         
         /* Main content padding to account for fixed header */
         body {
-            padding-top: 100px; /* Approximate header height */
+            padding-top: 100px;
         }
         
         /* Scroll Progress Bar */
@@ -356,8 +351,8 @@
         }
         
         .lang-btn {
-            height: 35px;
-            padding: 0 15px;
+            height: 38px;
+            padding: 0 1.25rem; /* Same as nav-btn */
             border: 2px solid var(--main-color);
             background: var(--bg-color);
             color: var(--main-color);
@@ -367,18 +362,23 @@
             font-weight: 600;
             transition: var(--transition);
             font-family: inherit;
+            display: inline-flex; /* Same as buttons */
+            align-items: center;
+            justify-content: center;
         }
         
         .lang-btn:hover {
-            border-color: var(--main-focus);
-            color: var(--main-focus);
+            background: var(--bg-page); /* Same as nav-btn */
         }
         
-        .lang-btn:active,
         .lang-btn.active {
             background-color: var(--main-color);
             color: var(--bg-color);
-            transform: translateY(3px);
+            box-shadow: 2px 2px var(--main-color); /* Same as nav-btn */
+        }
+        
+        .lang-btn:active {
+            transform: translateY(2px); /* Same as nav-btn */
         }
         
         /* Hero Section */
@@ -1404,14 +1404,16 @@
             background: white;
             border: 2.5px solid var(--main-color);
             border-radius: 12px;
-            padding: 0.75rem 1.25rem;
-            font-size: 1rem;
+            padding: 0.75rem 1rem;
+            font-size: 0.95rem;
             font-weight: 600;
             color: var(--main-color);
             z-index: 150;
             box-shadow: 4px 4px 0 0 var(--main-color);
             animation: bubbleBounce 0.5s ease-out;
             transition: opacity 0.3s ease, transform 0.3s ease;
+            text-align: center;
+            line-height: 1.3;
         }
         
         .welcome-bubble.hidden {
@@ -1579,23 +1581,23 @@
                 padding-top: 130px;
             }
             
-            /* Mobile Header: Navigation Under Avatar */
+            /* Mobile Header: CSS Grid for reliable 2-row layout */
             .header-content {
-                display: flex;
-                flex-wrap: wrap;
-                align-items: flex-start;
+                display: grid;
+                grid-template-columns: 1fr auto; /* Left grows, right fixed */
+                grid-template-rows: auto auto;   /* 2 rows */
                 gap: 0.75rem;
                 width: 100%;
+                align-items: center;
             }
             
-            /* Row 1 Left: Logo + Name (MS) */
+            /* Row 1: Logo + Name (MS) - spans both columns */
             .header-left {
                 display: flex;
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 0.75rem;
-                flex: 1 1 auto;
-                order: 1;
+                align-items: center;
+                gap: 0.5rem;
+                grid-column: 1 / -1; /* Span full width */
+                grid-row: 1;
             }
             
             /* Logo link stays horizontal */
@@ -1607,21 +1609,24 @@
                 text-decoration: none;
             }
             
-            /* Row 1 Right: Language Switcher */
-            .header-right {
-                display: flex;
-                gap: 0.5rem;
-                align-items: center;
-                flex: 0 0 auto;
-                order: 2;
-            }
-            
-            /* Navigation under logo (inside header-left) */
+            /* Row 2 Left: Navigation */
             .main-nav {
                 display: flex;
                 gap: 0.5rem;
                 align-items: center;
-                width: 100%;
+                grid-column: 1;
+                grid-row: 2;
+                justify-self: start; /* Left aligned */
+            }
+            
+            /* Row 2 Right: Language Switcher */
+            .header-right {
+                display: flex;
+                gap: 0.5rem;
+                align-items: center;
+                grid-column: 2;
+                grid-row: 2;
+                justify-self: end; /* Right aligned */
             }
             
             /* Logo smaller on mobile */
@@ -1638,20 +1643,28 @@
                 transform: scale(0.7);
             }
             
-            /* Language switcher compact */
+            /* Language switcher - Single toggle button on mobile */
             .lang-switcher {
                 gap: 0.5rem;
             }
             
-            .lang-btn {
-                padding: 0.4rem 0.8rem;
-                font-size: 0.9rem;
+            /* Hide inactive language button on mobile */
+            .lang-btn:not(.active) {
+                display: none;
             }
             
-            /* Nav buttons on second row */
+            .lang-btn {
+                padding: 0.5rem 0.8rem;
+                font-size: 0.9rem;
+                min-width: 50px;
+                height: 38px; /* Same as nav-btn */
+            }
+            
+            /* Nav buttons on second row - same height as lang button */
             .nav-btn {
                 padding: 0.5rem 1rem;
                 font-size: 0.95rem;
+                height: 38px; /* Explicit height */
             }
             
             .nav-menu {
@@ -1761,17 +1774,17 @@
                         </div>
                         <div class="logo">MS</div>
                     </a>
-                    
-                    <!-- Main Navigation (CV / Competence Profile) -->
-                    <nav class="main-nav">
-                        <button class="nav-btn active" data-view="cv">CV</button>
-                        <span class="nav-separator">|</span>
-                        <button class="nav-btn" data-view="competence">
-                            <span class="desktop-text">Competence Profile</span>
-                            <span class="mobile-text">Profile</span>
-                        </button>
-                    </nav>
                 </div>
+                
+                <!-- Main Navigation (CV / Competence Profile) -->
+                <nav class="main-nav">
+                    <button class="nav-btn active" data-view="cv">CV</button>
+                    <span class="nav-separator">|</span>
+                    <button class="nav-btn" data-view="competence">
+                        <span class="desktop-text">Competence Profile</span>
+                        <span class="mobile-text">Competence</span>
+                    </button>
+                </nav>
                 
                 <!-- Right Side: Language Switcher -->
                 <div class="header-right">
@@ -2317,8 +2330,8 @@
 
     <!-- Welcome Speech Bubble -->
     <div class="welcome-bubble" id="welcomeBubble">
-        <span data-en="Hi, I'm Michael!">Hi, I'm Michael!</span>
-        <span data-de="Hallo, ich bin Michael!" style="display: none;">Hallo, ich bin Michael!</span>
+        <span data-en="Welcome, I'm Michael!">Welcome,<br>I'm Michael!</span>
+        <span data-de="Willkommen, ich bin Michael!" style="display: none;">Willkommen,<br>ich bin Michael!</span>
     </div>
 
     <!-- Footer -->
@@ -2367,6 +2380,25 @@
                 }
             };
 
+            // Welcome Bubble
+            const welcomeBubble = document.getElementById('welcomeBubble');
+            
+            // Update welcome bubble text on language change
+            function updateWelcomeBubble(lang) {
+                if (!welcomeBubble) return;
+                
+                const enText = welcomeBubble.querySelector('[data-en]');
+                const deText = welcomeBubble.querySelector('[data-de]');
+                
+                if (lang === 'de') {
+                    enText.style.display = 'none';
+                    deText.style.display = 'inline';
+                } else {
+                    enText.style.display = 'inline';
+                    deText.style.display = 'none';
+                }
+            }
+
             // Language switcher
             let currentLang = 'en';
             
@@ -2391,12 +2423,25 @@
                 
                 // Update HTML lang attribute
                 document.documentElement.lang = lang;
+                
+                // Update welcome bubble (if it exists)
+                updateWelcomeBubble(lang);
             }
             
             // Event listeners for language buttons
             document.querySelectorAll('.lang-btn').forEach(btn => {
                 btn.addEventListener('click', function() {
-                    switchLanguage(this.dataset.lang);
+                    // Check if mobile (window width <= 768px)
+                    const isMobile = window.innerWidth <= 768;
+                    
+                    if (isMobile) {
+                        // Mobile: Toggle to the OTHER language
+                        const newLang = currentLang === 'en' ? 'de' : 'en';
+                        switchLanguage(newLang);
+                    } else {
+                        // Desktop: Switch to clicked language
+                        switchLanguage(this.dataset.lang);
+                    }
                 });
             });
             
@@ -2440,6 +2485,12 @@
                         } else {
                             scrollCharacter.style.display = 'none';
                         }
+                    }
+                    
+                    // Hide welcome bubble when switching views
+                    if (welcomeBubble && !hasScrolled) {
+                        hasScrolled = true;
+                        welcomeBubble.classList.add('hidden');
                     }
                     
                     // Scroll to top when switching views
@@ -2578,7 +2629,6 @@
             window.addEventListener('scroll', updateCharacterOutfit);
             
             // Welcome Bubble - Hide on Scroll
-            const welcomeBubble = document.getElementById('welcomeBubble');
             let hasScrolled = false;
             
             function hideWelcomeBubble() {
@@ -2591,62 +2641,6 @@
             }
             
             window.addEventListener('scroll', hideWelcomeBubble);
-            
-            // Update welcome bubble text on language change
-            function updateWelcomeBubble(lang) {
-                if (!welcomeBubble) return;
-                
-                const enText = welcomeBubble.querySelector('[data-en]');
-                const deText = welcomeBubble.querySelector('[data-de]');
-                
-                if (lang === 'de') {
-                    enText.style.display = 'none';
-                    deText.style.display = 'inline';
-                } else {
-                    enText.style.display = 'inline';
-                    deText.style.display = 'none';
-                }
-            }
-            
-            // Hook into language switcher
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const lang = btn.getAttribute('data-lang');
-                    updateWelcomeBubble(lang);
-                });
-            });
-            
-            // Smart Header - Show on scroll up, hide on scroll down
-            const header = document.querySelector('header');
-            let lastScrollY = window.pageYOffset;
-            let ticking = false;
-            
-            function updateHeader() {
-                const currentScrollY = window.pageYOffset;
-                
-                if (currentScrollY < 100) {
-                    // Always show header at top of page
-                    header.classList.remove('header-hidden');
-                } else if (currentScrollY > lastScrollY) {
-                    // Scrolling down - hide header
-                    header.classList.add('header-hidden');
-                } else {
-                    // Scrolling up - show header
-                    header.classList.remove('header-hidden');
-                }
-                
-                lastScrollY = currentScrollY;
-                ticking = false;
-            }
-            
-            function requestHeaderUpdate() {
-                if (!ticking) {
-                    window.requestAnimationFrame(updateHeader);
-                    ticking = true;
-                }
-            }
-            
-            window.addEventListener('scroll', requestHeaderUpdate);
             
             // Initial updates
             updateScrollProgress();
