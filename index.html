@@ -3166,5 +3166,48 @@
             updateCharacterOutfit();
         });
     </script>
+    
+    <!-- Hidden honeypot links - Invisible to humans, visible to bad bots -->
+    <!-- Position: far left off-screen, completely hidden from view -->
+    <!-- Purpose: Attract bad bots that ignore robots.txt to honeypot traps -->
+    <div style="position: absolute; left: -9999px; top: -9999px; width: 1px; height: 1px; overflow: hidden;" aria-hidden="true">
+        <!-- Administrative areas -->
+        <a href="/admin/">Admin Panel</a>
+        <a href="/admin/login.php">Admin Login</a>
+        <a href="/admin/dashboard.php">Dashboard</a>
+        <a href="/admin/users.php">User Management</a>
+        <a href="/admin/settings.php">System Settings</a>
+        
+        <!-- Secret files and backups -->
+        <a href="/secret/">Secret Files</a>
+        <a href="/secret/documents/">Confidential Documents</a>
+        <a href="/backup/">Backup Files</a>
+        <a href="/backup/database.sql">Database Backup</a>
+        <a href="/backup/files.zip">File Backup</a>
+        
+        <!-- Configuration and database -->
+        <a href="/config/">Configuration Files</a>
+        <a href="/config/database.php">Database Config</a>
+        <a href="/database/">Database Access</a>
+        <a href="/database/phpmyadmin/">PHPMyAdmin</a>
+        
+        <!-- API endpoints -->
+        <a href="/api/">API Documentation</a>
+        <a href="/api/v1/users">User API</a>
+        <a href="/api/keys.json">API Keys</a>
+        
+        <!-- Private areas -->
+        <a href="/private/">Private Files</a>
+        <a href="/private/documents/">Private Documents</a>
+        
+        <!-- WordPress (many bots look for this) -->
+        <a href="/wp-admin/">WordPress Admin</a>
+        <a href="/wp-login.php">WordPress Login</a>
+        <a href="/wp-config.php">WordPress Config</a>
+        
+        <!-- Obvious trap (for dumb bots) -->
+        <a href="/trap/">Trap Area</a>
+        <a href="/trap/duck.html">Duck Trap</a>
+    </div>
 </body>
 </html>
