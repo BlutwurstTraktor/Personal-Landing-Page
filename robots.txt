@@ -1,0 +1,17 @@
+# robots.txt for m-staehli.ch
+# BLOCKS ALL BOTS - Website is private and not indexed
+
+# ======================================
+# BLOCK ALL CRAWLERS
+# ======================================
+
+User-agent: *
+Disallow: /
+
+# ======================================
+# NOTES
+# ======================================
+# This website is intentionally not indexed by search engines
+# Access only via direct URL
+# No AI training, no search indexing, no data collection
+
