@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+    <title>Loading...</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 40px;
+            font-family: 'Courier New', monospace;
+            background: #000;
+            color: #0f0;
+            overflow: hidden;
+        }
+        .loader {
+            text-align: center;
+            margin-top: 20vh;
+        }
+        .spinner {
+            border: 8px solid #0f0;
+            border-top: 8px solid transparent;
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .links {
+            position: absolute;
+            left: -9999px;
+        }
+    </style>
+</head>
+<body>
+    <div class="loader">
+        <div class="spinner"></div>
+        <h1>Loading secure content...</h1>
+        <p>Please wait while we verify your credentials...</p>
+        <p id="status">Connecting to server...</p>
+    </div>
+    
+    <!-- Hidden links that create infinite crawl paths -->
+    <div class="links">
+        <a href="/trap/page1.html">Page 1</a>
+        <a href="/trap/page2.html">Page 2</a>
+        <a href="/trap/page3.html">Page 3</a>
+        <a href="/trap/data.html">Data</a>
+        <a href="/trap/files.html">Files</a>
+        <a href="/trap/documents.html">Documents</a>
+        <a href="/trap/secure.html">Secure Area</a>
+        <a href="/trap/admin.html">Admin</a>
+        <a href="/trap/config.html">Config</a>
+        <a href="/trap/backup.html">Backup</a>
+    </div>
+    
+    <script>
+        // Generate thousands of random links for bots to crawl
+        const linksDiv = document.querySelector('.links');
+        for(let i = 0; i < 10000; i++) {
+            const link = document.createElement('a');
+            link.href = '/trap/' + Math.random().toString(36).substr(2, 9) + '.html';
+            link.textContent = 'Trap Link ' + i;
+            linksDiv.appendChild(link);
+        }
+        
+        // Flood console with fake "loading" messages
+        let counter = 0;
+        setInterval(() => {
+            console.log('Loading... ' + counter++ + '%');
+            console.log('Fetching data from server...');
+            console.log('Authenticating...');
+            console.log('Processing request...');
+        }, 100);
+        
+        // Update status messages
+        const statuses = [
+            'Connecting to server...',
+            'Authenticating...',
+            'Loading encryption keys...',
+            'Verifying credentials...',
+            'Fetching secure data...',
+            'Processing request...',
+            'Almost there...',
+            'Please wait...'
+        ];
+        
+        let statusIndex = 0;
+        setInterval(() => {
+            document.getElementById('status').textContent = statuses[statusIndex];
+            statusIndex = (statusIndex + 1) % statuses.length;
+        }, 2000);
+        
+        // Redirect to another trap page after 30 seconds
+        setTimeout(() => {
+            const randomPage = Math.random().toString(36).substr(2, 9);
+            window.location.href = '/trap/' + randomPage + '.html';
+        }, 30000);
+        
+        // Prevent back button (trap them!)
+        history.pushState(null, null, location.href);
+        window.onpopstate = function() {
+            history.go(1);
+        };
+    </script>
+</body>
+</html>
