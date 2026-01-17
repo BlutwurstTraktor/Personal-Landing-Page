@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+    <title>🦆 QUACK QUACK QUACK 🦆</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #95e1d3, #f38181);
+            background-size: 400% 400%;
+            animation: gradientShift 10s ease infinite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Comic Sans MS', 'Chalkboard SE', 'Arial', cursive;
+            overflow: hidden;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .container {
+            text-align: center;
+            z-index: 10;
+            position: relative;
+        }
+        
+        .main-duck {
+            font-size: 300px;
+            animation: spin 3s linear infinite, bounce 2s ease-in-out infinite;
+            text-shadow: 10px 10px 20px rgba(0,0,0,0.3);
+            display: inline-block;
+        }
+        
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-50px) rotate(90deg); }
+            50% { transform: translateY(0) rotate(180deg); }
+            75% { transform: translateY(-30px) rotate(270deg); }
+        }
+        
+        h1 {
+            font-size: 80px;
+            color: #fff;
+            text-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+            margin: 20px 0;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        .message {
+            font-size: 32px;
+            color: #fff;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+            margin: 20px 0;
+            line-height: 1.6;
+        }
+        
+        .advice {
+            font-size: 24px;
+            color: #ffeb3b;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 15px;
+            border: 3px solid #ffeb3b;
+        }
+        
+        /* Floating ducks in background */
+        .floating-duck {
+            position: absolute;
+            font-size: 60px;
+            animation: float 20s linear infinite;
+            opacity: 0.3;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateX(-100px) translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateX(calc(100vw + 100px)) translateY(-200px) rotate(180deg);
+            }
+            100% {
+                transform: translateX(-100px) translateY(0) rotate(360deg);
+            }
+        }
+        
+        /* Rainbow text effect */
+        .rainbow {
+            background: linear-gradient(90deg, 
+                #ff0000, #ff7f00, #ffff00, #00ff00, 
+                #0000ff, #4b0082, #9400d3);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: rainbow 3s linear infinite;
+        }
+        
+        @keyframes rainbow {
+            to { background-position: 200% center; }
+        }
+        
+        .counter {
+            font-size: 40px;
+            color: #fff;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating ducks -->
+    <div class="floating-duck" style="top: 10%; animation-delay: 0s;">🦆</div>
+    <div class="floating-duck" style="top: 30%; animation-delay: 2s;">🦆</div>
+    <div class="floating-duck" style="top: 50%; animation-delay: 4s;">🦆</div>
+    <div class="floating-duck" style="top: 70%; animation-delay: 6s;">🦆</div>
+    <div class="floating-duck" style="top: 90%; animation-delay: 8s;">🦆</div>
+    
+    <div class="container">
+        <div class="main-duck">🦆</div>
+        
+        <h1 class="rainbow">🦆 QUACK QUACK QUACK! 🦆</h1>
+        
+        <div class="message">
+            <p><strong>Congratulations, Bad Bot!</strong></p>
+            <p>You've been <strong>DUCKED</strong>! 🦆</p>
+        </div>
+        
+        <div class="advice">
+            <p>📜 <strong>Lesson of the Day:</strong></p>
+            <p>Respecting <code>robots.txt</code> is important!</p>
+            <p>Good bots read it. Bad bots get ducked.</p>
+            <p style="margin-top: 15px;">🚪 Please leave now. Thank you! 🦆</p>
+        </div>
+        
+        <div class="counter">
+            <p>You've wasted: <span id="timer">0</span> seconds here</p>
+            <p>Ducks generated: <span id="duckCount">0</span> 🦆</p>
+        </div>
+    </div>
+    
+    <script>
+        // Console flood with ducks
+        console.log('%c🦆 QUACK QUACK QUACK! 🦆', 'font-size: 50px; color: #ff6b6b; font-weight: bold;');
+        console.log('%cYou have been DUCKED!', 'font-size: 30px; color: #4ecdc4;');
+        console.log('%cThis is a honeypot for bad bots.', 'font-size: 20px;');
+        console.log('%cRespect robots.txt next time! 🦆', 'font-size: 20px; color: #ffeb3b;');
+        
+        // Generate thousands of ducks in console
+        for(let i = 0; i < 1000; i++) {
+            console.log('🦆 QUACK #' + i);
+        }
+        
+        // Continuous duck generation
+        let duckCounter = 0;
+        setInterval(() => {
+            console.log('🦆🦆🦆🦆🦆 QUACK QUACK QUACK! 🦆🦆🦆🦆🦆');
+            duckCounter += 5;
+            document.getElementById('duckCount').textContent = duckCounter;
+        }, 100);
+        
+        // Timer to show how much time they're wasting
+        let seconds = 0;
+        setInterval(() => {
+            seconds++;
+            document.getElementById('timer').textContent = seconds;
+            document.title = '🦆'.repeat(Math.min(seconds, 50)) + ' QUACK!';
+        }, 1000);
+        
+        // Random duck sounds in console
+        const quacks = [
+            'QUACK!', 
+            'QUAAAAACK!', 
+            'quack quack',
+            'QUACK QUACK QUACK!',
+            '🦆',
+            'duck duck duck',
+            'honk honk (wait, wrong bird)',
+            'MEGA QUACK!'
+        ];
+        
+        setInterval(() => {
+            const randomQuack = quacks[Math.floor(Math.random() * quacks.length)];
+            console.log(randomQuack);
+        }, 500);
+        
+        // Add more floating ducks dynamically
+        setInterval(() => {
+            const duck = document.createElement('div');
+            duck.className = 'floating-duck';
+            duck.textContent = '🦆';
+            duck.style.top = Math.random() * 100 + '%';
+            duck.style.fontSize = (Math.random() * 40 + 40) + 'px';
+            duck.style.animationDelay = '0s';
+            document.body.appendChild(duck);
+            
+            // Remove after animation
+            setTimeout(() => duck.remove(), 20000);
+        }, 2000);
+        
+        // Prevent back button
+        history.pushState(null, null, location.href);
+        window.onpopstate = function() {
+            history.go(1);
+            console.log('🦆 Nice try! You cannot escape the ducks! 🦆');
+        };
+        
+        // Easter egg: If they try to leave
+        window.addEventListener('beforeunload', function(e) {
+            e.preventDefault();
+            e.returnValue = '🦆 Are you sure you want to leave the ducks? 🦆';
+        });
+        
+        // Endless loop of page reloads with different duck pages
+        setTimeout(() => {
+            console.log('🦆 Redirecting to more ducks... 🦆');
+            // Redirect to trap index (creates infinite loop)
+            window.location.href = '/trap/index.html';
+        }, 60000); // After 60 seconds
+    </script>
+</body>
+</html>
