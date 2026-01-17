@@ -1,17 +1,68 @@
 # robots.txt for m-staehli.ch
-# BLOCKS ALL BOTS - Website is private and not indexed
+# Advanced Honeypot Edition 🦆
 
-# ======================================
-# BLOCK ALL CRAWLERS
-# ======================================
-
+# ===================================
+# BLOCK EVERYTHING (for good bots)
+# ===================================
 User-agent: *
 Disallow: /
 
-# ======================================
-# NOTES
-# ======================================
+# ===================================
+# HONEYPOTS (for bad bots who ignore Disallow)
+# ===================================
+# These look like valuable targets but are traps!
+
+# Known bad bots - give them "forbidden" URLs to tempt them
+User-agent: BadBot
+User-agent: EvilCrawler
+User-agent: ScraperBot
+User-agent: SemrushBot
+User-agent: AhrefsBot
+User-agent: MJ12bot
+User-agent: DotBot
+User-agent: BLEXBot
+User-agent: DataForSeoBot
+Disallow: /admin/
+Disallow: /api/
+Disallow: /backup/
+Disallow: /config/
+Disallow: /database/
+Disallow: /login/
+Disallow: /private/
+Disallow: /secret/
+Disallow: /wp-admin/
+Allow: /trap/
+
+# ===================================
+# TEMPTING "FORBIDDEN" PATHS
+# ===================================
+# Bad bots love to crawl "forbidden" areas
+# All these paths lead to honeypots:
+#
+# /admin/     → Fake admin panel with endless links
+# /api/       → Fake API endpoints (404 or slow)
+# /backup/    → Fake backup files
+# /config/    → Fake configuration files
+# /database/  → Fake database dumps
+# /login/     → Fake login page
+# /private/   → Fake private documents
+# /secret/    → Fake secret files
+# /trap/      → Obvious trap (but some bots are dumb)
+# /wp-admin/  → Fake WordPress admin (many bots look for this)
+
+# ===================================
+# NOTES FOR HUMANS
+# ===================================
 # This website is intentionally not indexed by search engines
-# Access only via direct URL
-# No AI training, no search indexing, no data collection
+# Good bots respect "Disallow: /" and stop here
+# Bad bots ignore it and crawl the "forbidden" URLs
+# All forbidden URLs lead to honeypots that:
+#   - Waste bot resources
+#   - Create endless loops
+#   - Flood console logs
+#   - Show spinning ducks 🦆
+#
+# No AI training, no search indexing, no data collection allowed
+# Access only via direct URL: https://m-staehli.ch
+
 
