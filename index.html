@@ -3,27 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Michael Stähli - Technology & Transformation Consultant transitioning to Environmental Impact. 15 years experience in digital innovation, now pursuing sustainable solutions.">
-    <meta name="keywords" content="Technology Consultant, Sustainability, Environmental Technology, Digital Transformation, Enterprise Architecture">
+    
+    <!-- Basic Meta Tags (No SEO) -->
+    <title>Michael Stähli</title>
+    <meta name="description" content="Personal website of Michael Stähli">
     <meta name="author" content="Michael Stähli">
-    <meta name="robots" content="index, follow">
     
-    <!-- Security Headers -->
-    <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
-    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <!-- BLOCK ALL SEARCH ENGINES -->
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet">
     
-    <!-- Open Graph / Social Media -->
+    <!-- AI Training Prevention -->
+    <meta name="robots" content="noai, noimageai">
+    <meta name="googlebot" content="noai, noimageai">
+    
+    <!-- ✅ WORKING Security Headers -->
+    <!-- Referrer Policy: Controls how much referrer information is shared -->
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    
+    <!-- Content Security Policy: Protects against XSS attacks -->
+    <meta http-equiv="Content-Security-Policy" content="
+        default-src 'self'; 
+        script-src 'self' 'unsafe-inline'; 
+        style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; 
+        font-src 'self' data: https://fonts.gstatic.com; 
+        img-src 'self' data:; 
+        connect-src 'self';
+        frame-ancestors 'none';
+    ">
+    
+    <!-- Anti-Clickjacking Protection (replaces X-Frame-Options) -->
+    <script>
+        // Prevent page from being loaded in iframe/frame
+        // Safe version that doesn't crash if navigation is blocked
+        if (window.self !== window.top) {
+            try {
+                // Try to break out of the frame
+                window.top.location = window.self.location;
+            } catch (e) {
+                // If blocked by browser security, hide content instead
+                document.addEventListener('DOMContentLoaded', function() {
+                    document.body.innerHTML = '<div style="padding: 40px; text-align: center; font-family: Arial, sans-serif;">' +
+                        '<h1>⚠️ Security Warning</h1>' +
+                        '<p>This page cannot be displayed in a frame for security reasons.</p>' +
+                        '<p>Please visit: <a href="' + window.location.href + '" target="_blank">' + window.location.href + '</a></p>' +
+                        '</div>';
+                });
+            }
+        }
+    </script>
+    
+    <!-- Basic Open Graph (for private link sharing only) -->
+    <meta property="og:title" content="Michael Stähli">
+    <meta property="og:description" content="Personal website">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Michael Stähli - Technology & Environmental Impact">
-    <meta property="og:description" content="Technology & Transformation Consultant transitioning to Environmental Solutions">
-    <meta property="og:url" content="https://m-staehli.ch">
-    
-    <title>Michael Stähli - Technology & Environmental Impact</title>
     
     <!-- Preconnect to external resources -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
@@ -2484,6 +2522,9 @@
         <div class="container">
             <p data-i18n="footer.copyright">&copy; 2026 Michael Stähli. All rights reserved.</p>
             <p data-i18n="footer.tagline">Built with clean code and sustainable practices</p>
+            <p class="legal-notice" data-i18n="footer.legal" style="font-size: 0.75rem; color: var(--font-color-sub); margin-top: 1rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+                The content of this website is protected by copyright. Use for AI training, web scraping, or automated data collection is explicitly prohibited without prior written consent.
+            </p>
         </div>
     </footer>
 
@@ -2664,7 +2705,8 @@
                     
                     // Footer
                     'footer.copyright': '© 2026 Michael Stähli. All rights reserved.',
-                    'footer.tagline': 'Built with clean code and sustainable practices'
+                    'footer.tagline': 'Built with clean code and sustainable practices',
+                    'footer.legal': 'The content of this website is protected by copyright. Use for AI training, web scraping, or automated data collection is explicitly prohibited without prior written consent.'
                 },
                 de: {
                     // Hero Section
@@ -2837,7 +2879,8 @@
                     
                     // Footer
                     'footer.copyright': '© 2026 Michael Stahli. Alle Rechte vorbehalten.',
-                    'footer.tagline': 'Erstellt mit saüberem Code und nachhaltigen Praktiken'
+                    'footer.tagline': 'Erstellt mit sauberem Code und nachhaltigen Praktiken',
+                    'footer.legal': 'Der Inhalt dieser Website ist urheberrechtlich geschützt. Die Nutzung für KI-Training, Web-Scraping oder automatisierte Datenerfassung ist ohne vorherige schriftliche Zustimmung ausdrücklich untersagt.'
                 }
             };
 
