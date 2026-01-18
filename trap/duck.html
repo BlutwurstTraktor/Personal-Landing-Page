@@ -439,27 +439,33 @@
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             border: none;
-            padding: 1rem 2.5rem;
-            font-size: 1.3rem;
+            padding: 2rem;
+            font-size: 4rem;
             font-weight: bold;
-            border-radius: 50px;
+            border-radius: 50%;
+            width: 140px;
+            height: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
             box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
             transition: all 0.3s ease;
             font-family: 'Comic Sans MS', cursive;
+            margin: 0 auto;
         }
         
         .start-button:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 20px 50px rgba(102, 126, 234, 0.6);
         }
         
         .start-button:active {
-            transform: translateY(-1px) scale(1.02);
+            transform: translateY(-2px) scale(1.05);
         }
         
         .start-hint {
-            font-size: 0.9rem;
+            font-size: 0.75rem;
             color: #999;
             margin-top: 1rem;
             font-style: italic;
@@ -927,7 +933,13 @@
             .start-content { padding: 2rem 1.5rem; max-width: 90%; }
             .start-duck { font-size: 4rem; }
             .start-title { font-size: 2rem; }
-            .start-button { padding: 0.8rem 2rem; font-size: 1.1rem; }
+            .start-button { 
+                width: 120px; 
+                height: 120px; 
+                font-size: 3.5rem; 
+                padding: 1.5rem; 
+            }
+            .start-hint { font-size: 0.7rem; }
         }
         
         @media (max-width: 480px) {
@@ -944,8 +956,13 @@
             .start-duck { font-size: 3rem; }
             .start-title { font-size: 1.5rem; }
             .start-text { font-size: 0.9rem; }
-            .start-button { padding: 0.7rem 1.5rem; font-size: 1rem; }
-            .start-hint { font-size: 0.8rem; }
+            .start-button { 
+                width: 100px; 
+                height: 100px; 
+                font-size: 3rem; 
+                padding: 1rem; 
+            }
+            .start-hint { font-size: 0.65rem; }
         }
     </style>
 </head>
@@ -965,9 +982,9 @@
             <h2 class="start-title">Duckocalypse</h2>
             <p class="start-text">Warning: Contains flashing lights, screen shake, and ducks</p>
             <button class="start-button" id="start-button">
-                🎵 Click to Start 🦆
+                🦆
             </button>
-            <p class="start-hint">(Music & chaos will begin)</p>
+            <p class="start-hint">(don't click the duck, it's a trap!)</p>
         </div>
     </div>
     
@@ -1133,49 +1150,49 @@
             tvScanlines.classList.remove('active');
             
             if (currentPhase === 1) {
-                // Phase 1: Normal
-                body.classList.add('shake-1');
+                // Phase 1: Light shake + light strobo
+                body.classList.add('shake-1', 'strobo-1');
                 startDuckSpawner(1000);
             } else if (currentPhase === 2) {
-                // Phase 2: Light shake
-                body.classList.add('shake-2');
+                // Phase 2: Light shake + light strobo
+                body.classList.add('shake-2', 'strobo-1');
                 startDuckSpawner(800);
             } else if (currentPhase === 3) {
-                // Phase 3: Medium shake
-                body.classList.add('shake-3');
+                // Phase 3: Medium shake + medium strobo
+                body.classList.add('shake-3', 'strobo-2');
                 startDuckSpawner(600);
             } else if (currentPhase === 4) {
-                // Phase 4: Heavy shake + strobo
-                body.classList.add('shake-4', 'strobo-1');
+                // Phase 4: Heavy shake + medium strobo
+                body.classList.add('shake-4', 'strobo-2');
                 startDuckSpawner(400);
                 triggerFlash();
             } else if (currentPhase === 5) {
-                // Phase 5: Extreme shake + strobo
-                body.classList.add('shake-5', 'strobo-2');
+                // Phase 5: Extreme shake + heavy strobo
+                body.classList.add('shake-5', 'strobo-3');
                 startDuckSpawner(250);
                 triggerFlash();
             } else if (currentPhase === 6) {
-                // Phase 6: Ultra shake + glitch
+                // Phase 6: Ultra shake + heavy strobo + glitch
                 body.classList.add('shake-6', 'strobo-3');
                 glitchOverlay.classList.add('active');
                 startDuckSpawner(150);
                 triggerFlash();
             } else if (currentPhase === 7) {
-                // Phase 7: Maximum shake + text glitch
-                body.classList.add('shake-7', 'strobo-3');
+                // Phase 7: Maximum shake + extreme strobo + text glitch
+                body.classList.add('shake-7', 'strobo-4');
                 glitchOverlay.classList.add('active');
                 title.classList.add('glitch');
                 startDuckSpawner(100);
                 triggerFlash();
             } else if (currentPhase === 8) {
-                // Phase 8: Insane shake
+                // Phase 8: Insane shake + extreme strobo
                 body.classList.add('shake-8', 'strobo-4');
                 glitchOverlay.classList.add('active');
                 title.classList.add('glitch');
                 startDuckSpawner(60);
                 triggerFlash();
             } else if (currentPhase === 9) {
-                // Phase 9: ABSOLUTE CHAOS
+                // Phase 9: ABSOLUTE CHAOS (shake + strobo + rotation + inversion)
                 body.classList.add('shake-9', 'absolute-chaos');
                 glitchOverlay.classList.add('active');
                 title.classList.add('glitch');
