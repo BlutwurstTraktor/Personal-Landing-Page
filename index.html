@@ -755,7 +755,6 @@
             color: var(--font-color-sub);
             margin-bottom: 2rem;
             font-weight: 400;
-            text-align: justify;
         }
         
         /* Personal Info Grid */
@@ -938,7 +937,6 @@
         
         .timeline-description li {
             margin-bottom: 0.5rem;
-            text-align: justify;
         }
         
         /* Divider */
@@ -969,80 +967,25 @@
             gap: 1.5rem;
         }
         
-        /* Skill Cards - Bold Style (Option 3) */
-        .skill-card {
-            position: relative;
-            padding: 1.5rem;
-            background: var(--bg-color);
-            border: 3px solid var(--card-color);
-            border-radius: 8px;
-            box-shadow: 5px 5px 0px var(--card-color);
-            transition: all 0.2s ease;
-        }
-        
-        .skill-card:hover {
-            transform: translate(-2px, -2px);
-            box-shadow: 7px 7px 0px var(--card-color);
-        }
-        
-        /* Category Colors */
-        .skill-card.technical {
-            --card-color: var(--main-focus);
-        }
-        
-        .skill-card.methodical {
-            --card-color: var(--main-color);
-        }
-        
-        .skill-card.social {
-            --card-color: var(--accent-green);
-        }
-        
-        .skill-card.personal {
-            --card-color: #666666;
-        }
-        
-        /* Card Title */
-        .card-name {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            font-weight: 900;
-            font-size: 1.3rem;
-            color: var(--main-color);
+        .skill-category h3 {
+            font-size: 1.1rem;
+            color: var(--main-focus);
             margin-bottom: 1rem;
         }
         
-        /* Skills List */
-        .card-list {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
+        .skill-list {
             list-style: none;
         }
         
-        .card-list-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 0.75rem;
-        }
-        
-        /* Checkmark SVG */
-        .check-svg {
-            width: 1.5rem;
-            height: 1.5rem;
-            flex-shrink: 0;
-            margin-top: 0.1rem;
-        }
-        
-        .check-svg path {
-            fill: var(--card-color);
-        }
-        
-        /* Skill Text */
-        .skill-text {
-            font-size: 0.9rem;
+        .skill-list li {
+            padding: 0.75rem 0;
+            color: var(--font-color-sub);
+            border-bottom: 1px solid var(--bg-page);
             font-weight: 500;
-            line-height: 1.4;
-            color: var(--font-color);
+        }
+        
+        .skill-list li:last-child {
+            border-bottom: none;
         }
         
         /* Info Grid */
@@ -1173,32 +1116,27 @@
             font-size: 0.9rem;
         }
         
-        /* Hobby Pills - Neutral Style (same as skills) */
-        .hobby-pills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            list-style: none;
+        /* Hobbies Grid */
+        .hobbies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
         }
         
-        .hobby-pill {
-            display: inline-block;
-            font-size: 0.85rem;
-            background: var(--bg-color);
-            color: var(--main-color);
-            padding: 0.4rem 0.95rem;
-            border-radius: 20px;
-            font-weight: 500;
+        .hobby-badge {
+            background-color: var(--bg-color);
             border: 2px solid var(--main-color);
-            transition: all 0.2s ease;
-            cursor: default;
+            box-shadow: 2px 2px var(--main-color);
+            border-radius: 5px;
+            padding: 1rem;
+            text-align: center;
+            font-weight: 600;
+            transition: var(--transition);
         }
         
-        .hobby-pill:hover {
-            background: var(--main-color);
-            color: #ffffff;
+        .hobby-badge:hover {
             transform: translateY(-2px);
-            box-shadow: 3px 3px var(--main-color);
+            box-shadow: 4px 4px var(--main-color);
         }
         
         /* Footer */
@@ -2104,27 +2042,9 @@
             
             .skills-grid,
             .info-grid,
+            .hobbies-grid,
             .personal-info-grid {
                 grid-template-columns: 1fr;
-            }
-            
-            /* Skill Cards Responsive */
-            .skill-card {
-                padding: 1.25rem;
-            }
-            
-            .card-name {
-                font-size: 1.2rem;
-            }
-            
-            .skill-text {
-                font-size: 0.85rem;
-            }
-            
-            /* Hobby Pills Responsive */
-            .hobby-pill {
-                font-size: 0.75rem;
-                padding: 0.3rem 0.75rem;
             }
             
             /* Profile Section Mobile Layout */
@@ -2595,17 +2515,15 @@
                 <div class="section-header">
                     <h2 class="section-title" data-i18n="hobbies.title">Hobbies & Interests</h2>
                 </div>
-                <div class="card">
-                    <ul class="hobby-pills">
-                        <li class="hobby-pill" data-i18n="hobbies.surfing">Surfing</li>
-                        <li class="hobby-pill" data-i18n="hobbies.snowboarding">Snowboarding</li>
-                        <li class="hobby-pill" data-i18n="hobbies.mountaineering">Mountaineering</li>
-                        <li class="hobby-pill" data-i18n="hobbies.cooking">Cooking</li>
-                        <li class="hobby-pill" data-i18n="hobbies.pottery">Pottery</li>
-                        <li class="hobby-pill" data-i18n="hobbies.travel">Travel</li>
-                        <li class="hobby-pill" data-i18n="hobbies.subcultures">Subcultures</li>
-                        <li class="hobby-pill" data-i18n="hobbies.learning">Continuous Learning</li>
-                    </ul>
+                <div class="hobbies-grid">
+                    <div class="hobby-badge" data-i18n="hobbies.surfing">🏄‍♂️ Surfing</div>
+                    <div class="hobby-badge" data-i18n="hobbies.snowboarding">🏂 Snowboarding</div>
+                    <div class="hobby-badge" data-i18n="hobbies.mountaineering">⛰️ Mountaineering</div>
+                    <div class="hobby-badge" data-i18n="hobbies.cooking">🍳 Cooking</div>
+                    <div class="hobby-badge" data-i18n="hobbies.pottery">🏺 Pottery</div>
+                    <div class="hobby-badge" data-i18n="hobbies.travel">✈️ Travel</div>
+                    <div class="hobby-badge" data-i18n="hobbies.subcultures">🌍 Subcultures</div>
+                    <div class="hobby-badge" data-i18n="hobbies.learning">📚 Continuous Learning</div>
                 </div>
             </div>
         </section>
@@ -2637,17 +2555,13 @@
             <div class="container">
                 
                 <!-- Objectives -->
-                <div class="section-header">
-                    <h2 class="section-title" data-i18n="objectives.title">Objectives</h2>
-                </div>
+                <h3 style="color: var(--main-color); margin-bottom: 1.5rem; font-size: 1.5rem;" data-i18n="objectives.title">Objectives</h3>
                 <div class="card" style="margin-bottom: 2rem;">
-                    <p style="text-align: justify;" data-i18n="objectives.content">I aim to leverage my technical and transformation expertise to accelerate environmental solutions with measurable ecological impact. I seek to bridge complex environmental challenges with scalable technological implementations, enabling organizations to achieve ambitious sustainability goals. Through my combination of financial services transformation experience and emerging environmental knowledge, I can help organizations navigate sustainable business models, green finance innovations, and net-zero strategies.</p>
+                    <p data-i18n="objectives.content">I aim to leverage my technical and transformation expertise to accelerate environmental solutions with measurable ecological impact. I seek to bridge complex environmental challenges with scalable technological implementations, enabling organizations to achieve ambitious sustainability goals. Through my combination of financial services transformation experience and emerging environmental knowledge, I can help organizations navigate sustainable business models, green finance innovations, and net-zero strategies.</p>
                 </div>
                 
                 <!-- Key Achievements -->
-                <div class="section-header">
-                    <h2 class="section-title" data-i18n="achievements.title">Key Achievements</h2>
-                </div>
+                <h3 style="color: var(--main-color); margin-bottom: 1.5rem; font-size: 1.5rem;" data-i18n="achievements.title">Key Achievements</h3>
                 <div class="achievements-grid" style="margin-bottom: 2rem;">
                     <div class="card">
                         <div class="achievement-title" data-i18n="achievements.arch.title">Built IT Architecture & Strategy Department</div>
@@ -2672,166 +2586,49 @@
                 </div>
                 
                 <!-- Key Competencies -->
-                <div class="section-header">
-                    <h2 class="section-title" data-i18n="skills.title">Key Competencies</h2>
-                </div>
+                <h3 style="color: var(--main-color); margin-bottom: 1.5rem; font-size: 1.5rem;" data-i18n="skills.title">Key Competencies</h3>
                 <div class="skills-grid">
-                    <div class="card skill-card technical">
-                        <div class="card-name" data-i18n="skills.technical.title">Technical</div>
-                        <ul class="card-list">
-                            <li class="card-list-item">
-                                <svg viewBox="0 0 20 20" class="check-svg">
-                                    <path d="M7.629,14.566c0.125,0.125,0.291,0.188,0.456,0.188c0.164,0,0.329-0.062,0.456-0.188l8.219-8.221c0.252-0.252,0.252-0.659,0-0.911c-0.252-0.252-0.659-0.252-0.911,0l-7.764,7.763L4.152,9.267c-0.252-0.251-0.66-0.251-0.911,0c-0.252,0.252-0.252,0.66,0,0.911L7.629,14.566z"></path>
-                                </svg>
-                                <span class="skill-text" data-i18n="skills.technical.1">Enterprise Architecture & Digital Transformation</span>
-                            </li>
-                            <li class="card-list-item">
-                                <svg viewBox="0 0 20 20" class="check-svg">
-                                    <path d="M7.629,14.566c0.125,0.125,0.291,0.188,0.456,0.188c0.164,0,0.329-0.062,0.456-0.188l8.219-8.221c0.252-0.252,0.252-0.659,0-0.911c-0.252-0.252-0.659-0.252-0.911,0l-7.764,7.763L4.152,9.267c-0.252-0.251-0.66-0.251-0.911,0c-0.252,0.252-0.252,0.66,0,0.911L7.629,14.566z"></path>
-                                </svg>
-                                <span class="skill-text" data-i18n="skills.technical.2">Systems Integration from Complex Financial Services</span>
-                            </li>
-                            <li class="card-list-item">
-                                <svg viewBox="0 0 20 20" class="check-svg">
-                                    <path d="M7.629,14.566c0.125,0.125,0.291,0.188,0.456,0.188c0.164,0,0.329-0.062,0.456-0.188l8.219-8.221c0.252-0.252,0.252-0.659,0-0.911c-0.252-0.252-0.659-0.252-0.911,0l-7.764,7.763L4.152,9.267c-0.252-0.251-0.66-0.251-0.911,0c-0.252,0.252-0.252,0.66,0,0.911L7.629,14.566z"></path>
-                                </svg>
-                                <span class="skill-text" data-i18n="skills.technical.3">Information Security (CISM, OAuth 2.0, OpenID Connect)</span>
-                            </li>
-                            <li class="card-list-item">
-                                <svg viewBox="0 0 20 20" class="check-svg">
-                                    <path d="M7.629,14.566c0.125,0.125,0.291,0.188,0.456,0.188c0.164,0,0.329-0.062,0.456-0.188l8.219-8.221c0.252-0.252,0.252-0.659,0-0.911c-0.252-0.252-0.659-0.252-0.911,0l-7.764,7.763L4.152,9.267c-0.252-0.251-0.66-0.251-0.911,0c-0.252,0.252-0.252,0.66,0,0.911L7.629,14.566z"></path>
-                                </svg>
-                                <span class="skill-text" data-i18n="skills.technical.4">Requirements Engineering & Business Analysis</span>
-                            </li>
-                            <li class="card-list-item">
-                                <svg viewBox="0 0 20 20" class="check-svg">
-                                    <path d="M7.629,14.566c0.125,0.125,0.291,0.188,0.456,0.188c0.164,0,0.329-0.062,0.456-0.188l8.219-8.221c0.252-0.252,0.252-0.659,0-0.911c-0.252-0.252-0.659-0.252-0.911,0l-7.764,7.763L4.152,9.267c-0.252-0.251-0.66-0.251-0.911,0c-0.252,0.252-0.252,0.66,0,0.911L7.629,14.566z"></path>
-                                </svg>
-                                <span class="skill-text" data-i18n="skills.technical.5">Green Software & Sustainable Technology Design</span>
-                            </li>
-                            <li class="card-list-item">
-                                <svg viewBox="0 0 20 20" class="check-svg">
-                                    <path d="M7.629,14.566c0.125,0.125,0.291,0.188,0.456,0.188c0.164,0,0.329-0.062,0.456-0.188l8.219-8.221c0.252-0.252,0.252-0.659,0-0.911c-0.252-0.252-0.659-0.252-0.911,0l-7.764,7.763L4.152,9.267c-0.252-0.251-0.66-0.251-0.911,0c-0.252,0.252-0.252,0.66,0,0.911L7.629,14.566z"></path>
-                                </svg>
-                                <span class="skill-text" data-i18n="skills.technical.6">Innovation Management & Trend Analysis</span>
-                            </li>
+                    <div class="card skill-category">
+                        <h3 data-i18n="skills.technical.title">Technical</h3>
+                        <ul class="skill-list">
+                            <li data-i18n="skills.technical.1">Enterprise Architecture & Digital Transformation</li>
+                            <li data-i18n="skills.technical.2">Systems Integration from Complex Financial Services</li>
+                            <li data-i18n="skills.technical.3">Information Security (CISM, OAuth 2.0, OpenID Connect)</li>
+                            <li data-i18n="skills.technical.4">Requirements Engineering & Business Analysis</li>
+                            <li data-i18n="skills.technical.5">Green Software & Sustainable Technology Design</li>
+                            <li data-i18n="skills.technical.6">Innovation Management & Trend Analysis</li>
                         </ul>
                     </div>
-                    <div class="card skill-card methodical">
-                        <div class="card-name" data-i18n="skills.methodical.title">Methodical</div>
-                        <ul class="card-list">
-                            <li class="card-list-item">
-                                <svg viewBox="0 0 20 20" class="check-svg">
-                                    <path d="M7.629,14.566c0.125,0.125,0.291,0.188,0.456,0.188c0.164,0,0.329-0.062,0.456-0.188l8.219-8.221c0.252-0.252,0.252-0.659,0-0.911c-0.252-0.252-0.659-0.252-0.911,0l-7.764,7.763L4.152,9.267c-0.252-0.251-0.66-0.251-0.911,0c-0.252,0.252-0.252,0.66,0,0.911L7.629,14.566z"></path>
-                                </svg>
-                                <span class="skill-text" data-i18n="skills.methodical.1">Strategic Problem-Solving</span>
-                            </li>
-                            <li class="card-list-item">
-                                <svg viewBox="0 0 20 20" class="check-svg">
-                                    <path d="M7.629,14.566c0.125,0.125,0.291,0.188,0.456,0.188c0.164,0,0.329-0.062,0.456-0.188l8.219-8.221c0.252-0.252,0.252-0.659,0-0.911c-0.252-0.252-0.659-0.252-0.911,0l-7.764,7.763L4.152,9.267c-0.252-0.251-0.66-0.251-0.911,0c-0.252,0.252-0.252,0.66,0,0.911L7.629,14.566z"></path>
-                                </svg>
-                                <span class="skill-text" data-i18n="skills.methodical.2">Rapid Learning & Knowledge Synthesis</span>
-                            </li>
-                            <li class="card-list-item">
-                                <svg viewBox="0 0 20 20" class="check-svg">
-                                    <path d="M7.629,14.566c0.125,0.125,0.291,0.188,0.456,0.188c0.164,0,0.329-0.062,0.456-0.188l8.219-8.221c0.252-0.252,0.252-0.659,0-0.911c-0.252-0.252-0.659-0.252-0.911,0l-7.764,7.763L4.152,9.267c-0.252-0.251-0.66-0.251-0.911,0c-0.252,0.252-0.252,0.66,0,0.911L7.629,14.566z"></path>
-                                </svg>
-                                <span class="skill-text" data-i18n="skills.methodical.3">Analytical Thinking</span>
-                            </li>
-                            <li class="card-list-item">
-                                <svg viewBox="0 0 20 20" class="check-svg">
-                                    <path d="M7.629,14.566c0.125,0.125,0.291,0.188,0.456,0.188c0.164,0,0.329-0.062,0.456-0.188l8.219-8.221c0.252-0.252,0.252-0.659,0-0.911c-0.252-0.252-0.659-0.252-0.911,0l-7.764,7.763L4.152,9.267c-0.252-0.251-0.66-0.251-0.911,0c-0.252,0.252-0.252,0.66,0,0.911L7.629,14.566z"></path>
-                                </svg>
-                                <span class="skill-text" data-i18n="skills.methodical.4">Structured Innovation</span>
-                            </li>
-                            <li class="card-list-item">
-                                <svg viewBox="0 0 20 20" class="check-svg">
-                                    <path d="M7.629,14.566c0.125,0.125,0.291,0.188,0.456,0.188c0.164,0,0.329-0.062,0.456-0.188l8.219-8.221c0.252-0.252,0.252-0.659,0-0.911c-0.252-0.252-0.659-0.252-0.911,0l-7.764,7.763L4.152,9.267c-0.252-0.251-0.66-0.251-0.911,0c-0.252,0.252-0.252,0.66,0,0.911L7.629,14.566z"></path>
-                                </svg>
-                                <span class="skill-text" data-i18n="skills.methodical.5">Change Management</span>
-                            </li>
-                            <li class="card-list-item">
-                                <svg viewBox="0 0 20 20" class="check-svg">
-                                    <path d="M7.629,14.566c0.125,0.125,0.291,0.188,0.456,0.188c0.164,0,0.329-0.062,0.456-0.188l8.219-8.221c0.252-0.252,0.252-0.659,0-0.911c-0.252-0.252-0.659-0.252-0.911,0l-7.764,7.763L4.152,9.267c-0.252-0.251-0.66-0.251-0.911,0c-0.252,0.252-0.252,0.66,0,0.911L7.629,14.566z"></path>
-                                </svg>
-                                <span class="skill-text" data-i18n="skills.methodical.6">Effective Prioritization Under Pressure</span>
-                            </li>
+                    <div class="card skill-category">
+                        <h3 data-i18n="skills.methodical.title">Methodical</h3>
+                        <ul class="skill-list">
+                            <li data-i18n="skills.methodical.1">Strategic Problem-Solving</li>
+                            <li data-i18n="skills.methodical.2">Rapid Learning & Knowledge Synthesis</li>
+                            <li data-i18n="skills.methodical.3">Analytical Thinking</li>
+                            <li data-i18n="skills.methodical.4">Structured Innovation</li>
+                            <li data-i18n="skills.methodical.5">Change Management</li>
+                            <li data-i18n="skills.methodical.6">Effective Prioritization Under Pressure</li>
                         </ul>
                     </div>
-                    <div class="card skill-card social">
-                        <div class="card-name" data-i18n="skills.social.title">Social</div>
-                        <ul class="card-list">
-                            <li class="card-list-item">
-                                <svg viewBox="0 0 20 20" class="check-svg">
-                                    <path d="M7.629,14.566c0.125,0.125,0.291,0.188,0.456,0.188c0.164,0,0.329-0.062,0.456-0.188l8.219-8.221c0.252-0.252,0.252-0.659,0-0.911c-0.252-0.252-0.659-0.252-0.911,0l-7.764,7.763L4.152,9.267c-0.252-0.251-0.66-0.251-0.911,0c-0.252,0.252-0.252,0.66,0,0.911L7.629,14.566z"></path>
-                                </svg>
-                                <span class="skill-text" data-i18n="skills.social.1">Cross-Functional Leadership</span>
-                            </li>
-                            <li class="card-list-item">
-                                <svg viewBox="0 0 20 20" class="check-svg">
-                                    <path d="M7.629,14.566c0.125,0.125,0.291,0.188,0.456,0.188c0.164,0,0.329-0.062,0.456-0.188l8.219-8.221c0.252-0.252,0.252-0.659,0-0.911c-0.252-0.252-0.659-0.252-0.911,0l-7.764,7.763L4.152,9.267c-0.252-0.251-0.66-0.251-0.911,0c-0.252,0.252-0.252,0.66,0,0.911L7.629,14.566z"></path>
-                                </svg>
-                                <span class="skill-text" data-i18n="skills.social.2">Multilingual Communication</span>
-                            </li>
-                            <li class="card-list-item">
-                                <svg viewBox="0 0 20 20" class="check-svg">
-                                    <path d="M7.629,14.566c0.125,0.125,0.291,0.188,0.456,0.188c0.164,0,0.329-0.062,0.456-0.188l8.219-8.221c0.252-0.252,0.252-0.659,0-0.911c-0.252-0.252-0.659-0.252-0.911,0l-7.764,7.763L4.152,9.267c-0.252-0.251-0.66-0.251-0.911,0c-0.252,0.252-0.252,0.66,0,0.911L7.629,14.566z"></path>
-                                </svg>
-                                <span class="skill-text" data-i18n="skills.social.3">Community Leadership</span>
-                            </li>
-                            <li class="card-list-item">
-                                <svg viewBox="0 0 20 20" class="check-svg">
-                                    <path d="M7.629,14.566c0.125,0.125,0.291,0.188,0.456,0.188c0.164,0,0.329-0.062,0.456-0.188l8.219-8.221c0.252-0.252,0.252-0.659,0-0.911c-0.252-0.252-0.659-0.252-0.911,0l-7.764,7.763L4.152,9.267c-0.252-0.251-0.66-0.251-0.911,0c-0.252,0.252-0.252,0.66,0,0.911L7.629,14.566z"></path>
-                                </svg>
-                                <span class="skill-text" data-i18n="skills.social.4">Stakeholder Management</span>
-                            </li>
-                            <li class="card-list-item">
-                                <svg viewBox="0 0 20 20" class="check-svg">
-                                    <path d="M7.629,14.566c0.125,0.125,0.291,0.188,0.456,0.188c0.164,0,0.329-0.062,0.456-0.188l8.219-8.221c0.252-0.252,0.252-0.659,0-0.911c-0.252-0.252-0.659-0.252-0.911,0l-7.764,7.763L4.152,9.267c-0.252-0.251-0.66-0.251-0.911,0c-0.252,0.252-0.252,0.66,0,0.911L7.629,14.566z"></path>
-                                </svg>
-                                <span class="skill-text" data-i18n="skills.social.5">Team-Oriented & Solution-Focused</span>
-                            </li>
-                            <li class="card-list-item">
-                                <svg viewBox="0 0 20 20" class="check-svg">
-                                    <path d="M7.629,14.566c0.125,0.125,0.291,0.188,0.456,0.188c0.164,0,0.329-0.062,0.456-0.188l8.219-8.221c0.252-0.252,0.252-0.659,0-0.911c-0.252-0.252-0.659-0.252-0.911,0l-7.764,7.763L4.152,9.267c-0.252-0.251-0.66-0.251-0.911,0c-0.252,0.252-0.252,0.66,0,0.911L7.629,14.566z"></path>
-                                </svg>
-                                <span class="skill-text" data-i18n="skills.social.6">Collaborative & Reliable</span>
-                            </li>
+                    <div class="card skill-category">
+                        <h3 data-i18n="skills.social.title">Social</h3>
+                        <ul class="skill-list">
+                            <li data-i18n="skills.social.1">Cross-Functional Leadership</li>
+                            <li data-i18n="skills.social.2">Multilingual Communication</li>
+                            <li data-i18n="skills.social.3">Community Leadership</li>
+                            <li data-i18n="skills.social.4">Stakeholder Management</li>
+                            <li data-i18n="skills.social.5">Team-Oriented & Solution-Focused</li>
+                            <li data-i18n="skills.social.6">Collaborative & Reliable</li>
                         </ul>
                     </div>
-                    <div class="card skill-card personal">
-                        <div class="card-name" data-i18n="skills.personal.title">Personal</div>
-                        <ul class="card-list">
-                            <li class="card-list-item">
-                                <svg viewBox="0 0 20 20" class="check-svg">
-                                    <path d="M7.629,14.566c0.125,0.125,0.291,0.188,0.456,0.188c0.164,0,0.329-0.062,0.456-0.188l8.219-8.221c0.252-0.252,0.252-0.659,0-0.911c-0.252-0.252-0.659-0.252-0.911,0l-7.764,7.763L4.152,9.267c-0.252-0.251-0.66-0.251-0.911,0c-0.252,0.252-0.252,0.66,0,0.911L7.629,14.566z"></path>
-                                </svg>
-                                <span class="skill-text" data-i18n="skills.personal.1">Entrepreneurial Thinking</span>
-                            </li>
-                            <li class="card-list-item">
-                                <svg viewBox="0 0 20 20" class="check-svg">
-                                    <path d="M7.629,14.566c0.125,0.125,0.291,0.188,0.456,0.188c0.164,0,0.329-0.062,0.456-0.188l8.219-8.221c0.252-0.252,0.252-0.659,0-0.911c-0.252-0.252-0.659-0.252-0.911,0l-7.764,7.763L4.152,9.267c-0.252-0.251-0.66-0.251-0.911,0c-0.252,0.252-0.252,0.66,0,0.911L7.629,14.566z"></path>
-                                </svg>
-                                <span class="skill-text" data-i18n="skills.personal.2">Sustainability Perspective Aligned with UN SDGs</span>
-                            </li>
-                            <li class="card-list-item">
-                                <svg viewBox="0 0 20 20" class="check-svg">
-                                    <path d="M7.629,14.566c0.125,0.125,0.291,0.188,0.456,0.188c0.164,0,0.329-0.062,0.456-0.188l8.219-8.221c0.252-0.252,0.252-0.659,0-0.911c-0.252-0.252-0.659-0.252-0.911,0l-7.764,7.763L4.152,9.267c-0.252-0.251-0.66-0.251-0.911,0c-0.252,0.252-0.252,0.66,0,0.911L7.629,14.566z"></path>
-                                </svg>
-                                <span class="skill-text" data-i18n="skills.personal.3">High Resilience & Adaptability</span>
-                            </li>
-                            <li class="card-list-item">
-                                <svg viewBox="0 0 20 20" class="check-svg">
-                                    <path d="M7.629,14.566c0.125,0.125,0.291,0.188,0.456,0.188c0.164,0,0.329-0.062,0.456-0.188l8.219-8.221c0.252-0.252,0.252-0.659,0-0.911c-0.252-0.252-0.659-0.252-0.911,0l-7.764,7.763L4.152,9.267c-0.252-0.251-0.66-0.251-0.911,0c-0.252,0.252-0.252,0.66,0,0.911L7.629,14.566z"></path>
-                                </svg>
-                                <span class="skill-text" data-i18n="skills.personal.4">Values-Driven</span>
-                            </li>
-                            <li class="card-list-item">
-                                <svg viewBox="0 0 20 20" class="check-svg">
-                                    <path d="M7.629,14.566c0.125,0.125,0.291,0.188,0.456,0.188c0.164,0,0.329-0.062,0.456-0.188l8.219-8.221c0.252-0.252,0.252-0.659,0-0.911c-0.252-0.252-0.659-0.252-0.911,0l-7.764,7.763L4.152,9.267c-0.252-0.251-0.66-0.251-0.911,0c-0.252,0.252-0.252,0.66,0,0.911L7.629,14.566z"></path>
-                                </svg>
-                                <span class="skill-text" data-i18n="skills.personal.5">Continuous Learner</span>
-                            </li>
+                    <div class="card skill-category">
+                        <h3 data-i18n="skills.personal.title">Personal</h3>
+                        <ul class="skill-list">
+                            <li data-i18n="skills.personal.1">Entrepreneurial Thinking</li>
+                            <li data-i18n="skills.personal.2">Sustainability Perspective Aligned with UN SDGs</li>
+                            <li data-i18n="skills.personal.3">High Resilience & Adaptability</li>
+                            <li data-i18n="skills.personal.4">Values-Driven</li>
+                            <li data-i18n="skills.personal.5">Continuous Learner</li>
                         </ul>
                     </div>
                 </div>
@@ -3030,14 +2827,14 @@
                     'cert.cpre.name': 'Certified Professional for Requirements Engineering',
                     
                     // Hobbies
-                    'hobbies.surfing': 'Surfing',
-                    'hobbies.snowboarding': 'Snowboarding',
-                    'hobbies.mountaineering': 'Mountaineering',
-                    'hobbies.cooking': 'Cooking',
-                    'hobbies.pottery': 'Pottery',
-                    'hobbies.travel': 'Travel',
-                    'hobbies.subcultures': 'Subcultures',
-                    'hobbies.learning': 'Continuous Learning',
+                    'hobbies.surfing': '🏄‍♂️ Surfing',
+                    'hobbies.snowboarding': '🏂 Snowboarding',
+                    'hobbies.mountaineering': '⛰️ Mountaineering',
+                    'hobbies.cooking': '🍳 Cooking',
+                    'hobbies.pottery': '🏺 Pottery',
+                    'hobbies.travel': '✈️ Travel',
+                    'hobbies.subcultures': '🌍 Subcultures',
+                    'hobbies.learning': '📚 Continuous Learning',
                     
                     // Volunteering
                     'volunteering.rehkitz.title': 'Volunteer',
@@ -3204,14 +3001,14 @@
                     'cert.cpre.name': 'Zertifizierter Requirements Engineer',
                     
                     // Hobbies
-                    'hobbies.surfing': 'Surfen',
-                    'hobbies.snowboarding': 'Snowboarden',
-                    'hobbies.mountaineering': 'Bergsteigen',
-                    'hobbies.cooking': 'Kochen',
-                    'hobbies.pottery': 'Töpfern',
-                    'hobbies.travel': 'Reisen',
-                    'hobbies.subcultures': 'Subkulturen',
-                    'hobbies.learning': 'Kontinuierliches Lernen',
+                    'hobbies.surfing': '🏄‍♂️ Surfen',
+                    'hobbies.snowboarding': '🏂 Snowboarden',
+                    'hobbies.mountaineering': '⛰️ Bergsteigen',
+                    'hobbies.cooking': '🍳 Kochen',
+                    'hobbies.pottery': '🏺 Töpfern',
+                    'hobbies.travel': '✈️ Reisen',
+                    'hobbies.subcultures': '🌍 Subkulturen',
+                    'hobbies.learning': '📚 Kontinuierliches Lernen',
                     
                     // Volunteering
                     'volunteering.rehkitz.title': 'Freiwilliger',
@@ -3259,7 +3056,7 @@
                     'skills.personal.5': 'Kontinuierlicher Lerner',
                     
                     // Footer
-                    'footer.copyright': '© 2026 Michael Stähli. Alle Rechte vorbehalten.',
+                    'footer.copyright': '© 2026 Michael Stahli. Alle Rechte vorbehalten.',
                     'footer.tagline': 'Erstellt mit sauberem Code und nachhaltigen Praktiken',
                     'footer.legal': 'Der Inhalt dieser Website ist urheberrechtlich geschützt. Die Nutzung für KI-Training, Web-Scraping oder automatisierte Datenerfassung ist ohne vorherige schriftliche Zustimmung ausdrücklich untersagt.'
                 }
@@ -3669,6 +3466,8 @@
         <!-- Secret files and backups -->
         <a href="/secret/">Secret Files</a>
         <a href="/secret/documents/">Confidential Documents</a>
+        <a href="/secret/keys">Secret API Keys</a>
+        <a href="/secret/tokens">Authentication Tokens</a>
         <a href="/backup/">Backup Files</a>
         <a href="/backup/database.sql">Database Backup</a>
         <a href="/backup/files.zip">File Backup</a>
@@ -3681,12 +3480,23 @@
         
         <!-- API endpoints -->
         <a href="/api/">API Documentation</a>
+        <a href="/api/docs.html">Complete API Documentation</a>
+        <a href="/api/docs/index.html">API Reference Guide</a>
         <a href="/api/v1/users">User API</a>
+        <a href="/api/v1/free-access">Free API Access</a>
+        <a href="/api/v2/unlimited">Unlimited API Endpoint</a>
+        <a href="/api/v3/premium">Premium API Features</a>
         <a href="/api/keys.json">API Keys</a>
+        <a href="/api/authentication">API Authentication</a>
         
         <!-- Private areas -->
         <a href="/private/">Private Files</a>
         <a href="/private/documents/">Private Documents</a>
+        
+        <!-- Hidden endpoints -->
+        <a href="/hidden/">Hidden Area</a>
+        <a href="/hidden/endpoints">Hidden API Endpoints</a>
+        <a href="/hidden/data">Hidden Data Access</a>
         
         <!-- WordPress (many bots look for this) -->
         <a href="/wp-admin/">WordPress Admin</a>
