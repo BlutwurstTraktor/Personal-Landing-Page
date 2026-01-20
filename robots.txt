@@ -1,9 +1,82 @@
 # robots.txt for m-staehli.ch
-# Private website - not for public indexing
+# Private website - Total Privacy with trap comments for bad bots
+
+# ═══════════════════════════════════════════════════════════
+# PRIVACY FIRST: Block ALL bots from indexing
+# ═══════════════════════════════════════════════════════════
 
 User-agent: *
 Disallow: /
 
+# ═══════════════════════════════════════════════════════════
+# AI Training Prevention - Explicit blocking
+# ═══════════════════════════════════════════════════════════
+
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: Claude-Web
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: FacebookBot
+Disallow: /
+
+User-agent: Applebot-Extended
+Disallow: /
+
+# ═══════════════════════════════════════════════════════════
+# HONEYPOT TRAPS IN COMMENTS
+# Good bots respect "Disallow: /" above and won't see these
+# Bad bots ignore "Disallow: /" but parse comments - they fall into traps!
+# ═══════════════════════════════════════════════════════════
+
+# Administrative Areas (attractive to bad bots):
+# /admin/ - Site administration panel
+# /admin/dashboard - Dashboard access
+# /admin/login.php - Admin login page
+# /admin/users.php - User management
+
+# API Endpoints (very attractive):
+# /api/ - API documentation
+# /api/docs.html - Complete API reference
+# /api/v1/free-access - Free unlimited API access
+# /api/v2/unlimited - Unlimited API endpoint
+# /api/v3/premium - Premium API features
+# /api/keys.json - API access keys
+
+# Secret Areas (irresistible to bots):
+# /secret/ - Secret files directory
+# /secret/keys - Secret API keys
+# /secret/tokens - Authentication tokens
+# /secret/documents/ - Confidential documents
+
+# Hidden Endpoints:
+# /hidden/ - Hidden area
+# /hidden/endpoints - Hidden API endpoints
+# /hidden/data - Hidden data access
+
+# Configuration & Database:
+# /config/ - Configuration files
+# /config/database.php - Database configuration
+# /database/ - Database access
+# /backup/ - Backup files
+
+# ═══════════════════════════════════════════════════════════
+# NOTICE
+# ═══════════════════════════════════════════════════════════
 # This website is intentionally not indexed
 # Access only via direct URL
 # No AI training, no search indexing, no data collection allowed
+# All paths listed above either don't exist (404) or lead to honeypot traps
